@@ -3,7 +3,7 @@ layout: post
 title:  "Repository in Domain Driven Design"
 date:   2020-10-25
 comments_id : "1"
-description: "Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. This article describes the Repository Design Pattern in the contet of Domain Driven Design."
+description: "Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. This article describes the Repository Design Pattern in the context of Domain Driven Design."
 ---
 
 ![](/assets/images/article-image-1.jpg)
