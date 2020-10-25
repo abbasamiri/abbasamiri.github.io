@@ -1,0 +1,15 @@
+@import "pygments-css/vs.css";
+html, body {
+    font-size: 1.03em;
+}
+.markdown-body {
+    font-size: 1.03em;
+}
+
+pre.highlight {
+    border: solid 1px #cfd2d6;
+}
+
+p {
+    text-align: justify;
+}

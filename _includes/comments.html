@@ -1,0 +1,64 @@
+<script src="  https://unpkg.com/showdown/dist/showdown.min.js"></script>
+<script>
+    const GH_API_URL = 'https://api.github.com/repos/abbasamiri/github.io/issues/{{ page.comments_id }}/comments'; // ?client_id={{ site.data.settings.gh_api.ci }}&client_secret={{ site.data.settings.gh_api.cs }}
+    let request = new XMLHttpRequest();
+    request.open('GET', GH_API_URL, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let response = JSON.parse(this.response);
+
+            for (let i = 0; i < response.length; i++) {
+                document.getElementById('comment-container').appendChild(createCommentEl(response[i]));
+            }
+        } else {
+            console.error(this);
+        }
+    };
+
+    function createCommentEl(response) {
+        let comment = document.createElement('div');
+        comment.classList.add('TimelineItem')
+        let date = new Date(response.created_at);
+        let commentText = '';
+        if (window.showdown) {
+            let converter = new showdown.Converter();
+            commentText = converter.makeHtml(response.body);
+        }
+        comment.innerHTML =
+            '<div class="TimelineItem-avatar">\n' +
+            '<img class="avatar" height="40" width="40" alt="@octocat"\n' +
+            'src="' + response.user.avatar_url + '" />\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-badge">\n' +
+            '<i class="icon-comment" style="margin-top: 6px;margin-left: 2px;"></i>\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-body">\n' +
+            '<div class="Box">\n' +
+            '<div class="Box-body">\n' +
+            '<a href="' + response.html_url + '" class="mr-1" target="_blank">' +
+            '<strong>' + response.user.login + '</strong> commented at ' + date.toLocaleString() +
+            '</a>\n' +
+            '<p>' + commentText + '</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n'
+        return comment;
+    }
+
+    request.send();
+</script>
+<div class="Box m-2 box-shadow-medium">
+    <div class="Box-body">
+        <h3><i class="icon-comment"></i> Comments</h3>
+        <hr>
+        <div class="flash-messages">
+            <div class="flash">
+                <p>Join the discussion for this article on <a
+                        href="https://github.com/abbasamiri/abbasamiri.github.io/issues/{{ page.comments_id }}" target="_blank">this
+                    ticket</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ml-6 pl-3" id="comment-container"></div>
+    </div>
+</div>

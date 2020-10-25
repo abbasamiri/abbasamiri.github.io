@@ -1,0 +1,15 @@
+title: Enterprise Software Blog
+email: abbas.amiri@outlook.com
+description: >-
+  A place for discussing about software.
+baseurl: ""
+url: ""
+#twitter_username: jekyllrb
+#github_username:  jekyll
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+paginate: 10
+highlighter: rouge
