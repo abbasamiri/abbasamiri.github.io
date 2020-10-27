@@ -30,7 +30,7 @@ Martin Fowler in his book [Patterns of Enterprise Application Architecture](http
 
 ![Service Layer](/assets/images/article-image-3.gif)
 
-Service Layer is where the application's operations take place. This layer encapsulates application business logic, controlling transactions, workflow logic and every activity that is related to the application so it could be called *Application Service Layer*. The layer exploits Repositories to perform its job.
+Service Layer is where the application's operations take place. This layer encapsulates application business logic, controlling transactions, workflow logic and every activity that is related to the application so it could be called *Application Service Layer*. The layer exploits repositories to perform its job.
 
 #### Unit of Work
 
@@ -51,7 +51,7 @@ The main purpose of `Unit of Work` is to manage transactions in a way that repos
 
 Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. 
 
-Normally every *Aggregate Domain Model* has a repository. Martin Fowler describes Aggregate or Aggregate root as below:
+Normally every *Aggregate Domain Model* has a repository. Martin Fowler describes *Aggregate* or *Aggregate root* as below:
 
 > Aggregate is a pattern in Domain-Driven Design. A DDD aggregate is a cluster of domain objects that can be treated as a single unit. 
 > 
@@ -78,7 +78,7 @@ Data sources are mostly somewhere outside of your application like SqlServer, Or
 
 ![Repository and Unit of Work](/assets/images/article-image-2.png)
 
-The above diagram shows that the Unit of Work manages transactions for two repositories which one of them is an aggregate repository. 
+The above diagram shows that the *Unit of Work* manages transactions for two repositories which one of them is an aggregate repository. 
 
 Service Layer uses repositories to perform its operations. Transaction over repositories should be handled by *Service Layer* via *Unit of Work*.
 
@@ -116,7 +116,7 @@ If you are using *Domain Driven Design (DDD)* in your project, you meant to use 
 
 #### Meaningful contract
 Repository is not a CRUD interface, it should not be designed with data-storage's vocabulary. 
-It is something that domain experts can understand for the sake of Ubiquitous language. The repository contract should be specific in the way that developers understand the purpose of a method without exploring the code. A repository comes from the need of use-cases, so it should be specific and understandable.
+It is something that domain experts can understand for the sake of *Ubiquitous Language*. The repository contract should be specific in the way that developers understand the purpose of a method without exploring the code. A repository comes from the need of use-cases, so it should be specific and understandable.
 
 Let's look at two versions of `ICustomerRepository`. Which one is more understandable and specific? Obviously the second version is much better than the first one.
 
@@ -139,7 +139,7 @@ public interface ICustomerRepository: IRepository
 }
 ````
 
-The `IRepository` is a *Mareker Interface* that provides run-time type information about object.
+The `IRepository` is a *Marker Interface* that provides run-time type information about object.
 
 #### Repository and Specification Pattern
 
