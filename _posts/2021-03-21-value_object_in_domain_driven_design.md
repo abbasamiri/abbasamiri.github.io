@@ -101,7 +101,7 @@ public class PersonName {
 
 *Immutability* is a powerful aspect of programming languages. *Value object* takes benefit of the aspect to prevent client code to put the *value object* in a invalid state.
 
-*Immutability* forces the "value object" to have several aspects:
+*Immutability* forces the *Value object* to have several aspects:
 
 1. *Value objects* do not have any method that changes its state.
 2. *Value objects* can not be extended.
