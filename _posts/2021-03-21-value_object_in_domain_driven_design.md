@@ -509,7 +509,7 @@ In this way, *value object's* properties are part of ab entity's properties. On 
 
 
 
-![value-object-image-2](/assets/images/article-image-7.jpg)
+![value-object-image-2](/assets/images/article-image-7.png)
 
 ## Summary
 
