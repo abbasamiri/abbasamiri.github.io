@@ -473,6 +473,7 @@ public class PersonName {
 public class PersonAddress {
     public string Country {get; private set;}
     public string State {get; private set;}
+    public string City {get; private set;}
     public string Address {get; private set;}
     ...
 }
@@ -490,11 +491,13 @@ public class PersonAddress {
         {
             "Country": "...",
             "State": "...",
+            "City": "...",
             "Address": "..."
         },
         {
             "Country": "...",
             "State": "...",
+            "City": "...",
             "Address": "..."
         }
     ]
