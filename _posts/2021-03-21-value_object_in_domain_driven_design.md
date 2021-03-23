@@ -455,7 +455,7 @@ public class Employee
 {
     public Guid Id {set; private get;}
     public PersonName Name {set; private get;}
-    public ReadOnlyCollection<Address> Address {set; private get;}
+    public ReadOnlyCollection<Address> Addresses {set; private get;}
     ...
 }
 ````
