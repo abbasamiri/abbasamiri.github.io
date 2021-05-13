@@ -13,7 +13,7 @@ Enterprise applications often have complex data which need to persist. Data pers
 *Repository Design Pattern* mostly lives in the context of *Domain Driven Design* in collaboration with some architectural patterns like *Layered Architecture*, *Domain Models*, *Service Layer*, *Data Mapper*, *Unit of Work* which will be described briefly to have common understanding of these patterns.
 
 #### Domain Driven Design
-Domain-driven design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. The term was coined by Eric Evans in his [book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) of the same title. *Context*, *Domain*, *Model*, *Ubiquitous Language* are basic concepts in DDD.
+Domain Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. The term was coined by Eric Evans in his [book](https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215) of the same title. *Context*, *Domain*, *Model*, *Ubiquitous Language* are basic concepts in DDD.
 
 #### Layered Architecture
 An application has some components that perform specific tasks. *Layered Architecture* organizes these components in a level that components with specific concern are in the same layer. For instance, the presentation layer consists of all components which build the user-interface, the persistent layer is a collection of components that perform data persistence and so on. Layers communicate with each other in a certain way, the structure of architecture defines the direction of communication between layers.
