@@ -336,7 +336,8 @@ public class User
 var validEmailAddressSpecification = new ValidEmailAddressSpecification();
 var ValidBankAccountSpecification = new ValidBankAccountSpecification();
 
-if (validEmailAddressSpecification && ValidBankAccountSpecification) {
+if (validEmailAddressSpecification && ValidBankAccountSpecification) 
+{
   // create the user.
 } 
 else 
