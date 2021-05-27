@@ -310,7 +310,10 @@ Imagine that you have a website that people can register themselves into your we
 ````csharp
 public class ValidEmailAddressSpecification : ISpecification
 {
-  
+    public bool IsSatisfiedBy(User candidate) 
+    {
+        ...
+    }
 }
 ````
 
@@ -319,7 +322,10 @@ public class ValidEmailAddressSpecification : ISpecification
 ````csharp
 public class ValidBankAccountSpecification : ISpecification
 {
-  
+    public bool IsSatisfiedBy(User candidate) 
+    {
+        ...
+    }  
 }
 ````
 
@@ -333,10 +339,11 @@ public class User
 ````
 
 ````csharp
+var theUser = new User(...)
 var validEmailAddressSpecification = new ValidEmailAddressSpecification();
 var ValidBankAccountSpecification = new ValidBankAccountSpecification();
 
-if (validEmailAddressSpecification && ValidBankAccountSpecification) 
+if (validEmailAddressSpecification.IsSatisfiedBy(user) &&        ValidBankAccountSpecification.IsSatisfiedBy(user)) 
 {
   // create the user.
 } 
