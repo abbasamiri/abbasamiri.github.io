@@ -343,23 +343,24 @@ var theUser = new User(...)
 var validEmailAddressSpecification = new ValidEmailAddressSpecification();
 var ValidBankAccountSpecification = new ValidBankAccountSpecification();
 
-if (validEmailAddressSpecification.IsSatisfiedBy(user) &&        ValidBankAccountSpecification.IsSatisfiedBy(user)) 
+if (validEmailAddressSpecification.IsSatisfiedBy(user) &&      
+    ValidBankAccountSpecification.IsSatisfiedBy(user)) 
 {
-  // create the user.
+    // create the user.
 } 
 else 
 {
-  // notify the user that he/she is not eligible.
+    // notify the user that he/she is not eligible.
 }
 ````
 
 ## Entity and Domain Service
 
-Sometimes there is an operation that involves more than one Entity and you are not sure which Entity owns the operation, it is a sign that we need a *Domain Service*.
+Sometimes there is an operation that involves more than one *Entity* and you are not sure which *Entity* owns the operation, it is a sign that we need a *Domain Service*.
 
-Domain Services are stateless domain operations which push the entity's behavior out of it.
+*Domain Service*s are stateless domain operations which push the entity's behavior out of it.
 
-Imagine that we have two Entities in a *Domain Model* called `Person` and `Task` and we have an operation that assigns a *Task* to a *Person*. Which Entity owns the Task? It seems to me neither the `Person` nor the `Task` owns the operation and we need a *Domain Service*, Let's call it `PersonTaskOperation`.
+Imagine that we have two entities in a *Domain Model* called `Person` and `Task` and we have an operation that assigns a *Task* to a *Person*. Which entity owns the Task? It seems to me neither the `Person` nor the `Task` owns the operation and we need a *Domain Service*, Let's call it `PersonTaskOperation`.
 
 ```csharp
 public interface IPersonTaskOperation
@@ -371,7 +372,7 @@ public interface IPersonTaskOperation
 
 ## Good things to avoid!
 
-Design Patterns are good things, they can resolve the complex problem with best practices, but sometimes we should prevent using them, even if it is applicable in DDD. The question is "Why?".
+Design patterns are good things, they can resolve the complex problem with best practices, but sometimes we should prevent using them, even if it is applicable in *DDD*. The question is "Why?".
 
 Design patterns have many boilerplates and they increase the complexity, domain masters are not developers, they may not understand those patterns which makes a great problem. Let's  take a look at some Design patterns  that can be used in a Domain Model, but should not be used.
 
@@ -385,7 +386,7 @@ This is interesting. This pattern helps us to avoid setters and getters which in
 
 ![Memento](/assets/images/article-image-9.gif)
 
-What are those things? Originator, Memento, Caretaker, are they business's concepts? Of course not. They pollute our Domain Model. A wise man said "Do not create problems to solve a problem", are we solving a problem and creating other ones? Imagine hundreds of those objects in your Domain Model. We should remember that we are going to **Tackling Complexity in the Heart of Software**, not to increase it.
+What are those things? *Originator*, *Memento*, *Caretaker*, are they business's concepts? Of course not. They pollute our *Domain Model*. A wise man said "Do not create problems to solve a problem", are we solving a problem and creating other ones? Imagine hundreds of those objects in your *Domain Model*. We should remember that we are going to **Tackling Complexity in the Heart of Software**, not to increase it.
 
 
 
@@ -397,15 +398,15 @@ What are those things? Originator, Memento, Caretaker, are they business's conce
 
 
 
-That is interesting too. State Pattern allows us to control Entity's life cycle. In the lifetime of an Entity, its state changes and the State Pattern helps us to manage it.
+That is interesting too. *State* pattern allows us to control entity's life cycle. In the lifetime of an *Entity*, its state changes and the *State* pattern helps us to manage it.
 
 Let's take a look at its class diagram.
 
 ![state](/assets/images/article-image-10.gif)
 
-Imagine Entity's state with this pattern. Too many boilerplates must be implemented. Like the Memento Pattern, using State Pattern pollutes the Domain Model with objects that Domain masters may not understand.
+Imagine entity's state with this pattern. Too many boilerplates must be implemented. Like the *Memento* pattern, using *State* pattern pollutes the *Domain Model* with objects that domain masters may not understand.
 
-You may ask me "Are you telling us that *Gang of Four* were wrong?", of course not ,developers should use those patterns in the *infrastructure* which is excellent, but not in the Domain Model.
+You may ask me "Are you telling us that *Gang of Four* were wrong?", of course not ,developers should use those patterns in the *infrastructure* which is excellent, but not in the *Domain Model*.
 
 
 
@@ -417,9 +418,9 @@ You may ask me "Are you telling us that *Gang of Four* were wrong?", of course n
 
 
 
-Inside an entity, operations can be categorized in Command and Query. Commands are operations that change the internal state of an entity and Queries are operations that do some calculations and return the result without changing the internal state of the entity. Joining these two operations could be problematic in some situations. In this way the concept of Side-Effect-Free comes into DDD.
+Inside an entity, operations can be categorized in *Command* and *Query*. Commands are operations that change the internal state of an entity and queries are operations that do some calculations and return the result without changing the internal state of the entity. Joining these two operations could be problematic in some situations. In this way the concept of *Side-Effect-Free* comes into *DDD*.
 
-Consider that you have the Entity below:
+Consider that you have the *Entity* below:
 
 ````csharp
 public class Person : Entity<Guid>
@@ -467,7 +468,7 @@ public class Person : Entity<Guid>
 
 ## Entity base class
 
-It would be a good idea to inherit Entities from an abstract base class. As you can see in the class below, some common characteristics of Entity are provided which makes a nice uniformity in a Domain Model.
+It would be a good idea to inherit entities from an abstract base class. As you can see in the class below, some common characteristics of *Entity* are provided which makes a nice uniformity in a *Domain Model*.
 
 ````csharp
 public abstract class Entity<TIdentity>
@@ -505,5 +506,5 @@ public abstract class Entity<TIdentity>
 
 ## Summary
 
-In Domain Driven Design, Entity is one of the important building blocks which should be considered carefully. Understanding the characteristics of Entity can help the designer to design proper Entities inside a Domain Model.
+In *Domain Driven Design*, *Entity* is one of the important building blocks which should be considered carefully. Understanding the characteristics of *Entity* can help the designer to design proper entities inside a *Domain Model*.
 
