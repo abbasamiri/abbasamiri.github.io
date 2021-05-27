@@ -193,9 +193,9 @@ Pushing behavior into *Value Objects* makes an *Entity* focused and more underst
 ````csharp
 public class Person : Entity
 {
-  	public string LastName {set;get;}
-  	public string FirstName {set;get;}
-  	public Date DateOfBirth {set;get;}
+    public string LastName {set;get;}
+    public string FirstName {set;get;}
+    public Date DateOfBirth {set;get;}
 }
 ````
 
@@ -204,19 +204,20 @@ This class ,obviously, suffers from the *Anemic Domain Model*. If an application
 ````csharp
 public class Person : Entity
 {
-  	public string LastName {get;}
-  	public string FirstName {get;}
-  	public Date DateOfBirth {get;}
+    public string LastName {get;}
+    public string FirstName {get;}
+    public Date DateOfBirth {get;}
   
-  	public Person(string firstName, string lastName, Date dateOfBirth)
+    public Person(string firstName, string lastName, Date dateOfBirth)
     {
-			   SetLastName(lastName);
-				 SetFirstName(firstName);
-				 SetDateOfBirth(dateOfBirth);
+        SetLastName(lastName);
+        SetFirstName(firstName);
+        SetDateOfBirth(dateOfBirth);
     }
   
-  	public void SetLastName(string lastName) {
-      LastName = lastName;
+    public void SetLastName(string lastName) 
+    {
+        LastName = lastName;
     }
     ... 
 }
@@ -233,12 +234,12 @@ Every application has several use-cases and all components in the *Domain Model*
 ````csharp
 public class Person : Entity
 {
-  public string Id {get;}
-  public string FirstName {get;}
-  public string LastName {get;}
-  public bool MarriageStatus {get;}
-  public Color EyesColor {get;}
-  ...
+    public string Id {get;}
+    public string FirstName {get;}
+    public string LastName {get;}
+    public bool MarriageStatus {get;}
+    public Color EyesColor {get;}
+    ...
 }
 ````
 
@@ -262,28 +263,31 @@ Let's consider the example below:
 ````csharp
 public class Person : Entity<Guid>
 {
-  	public string LastName {get;}
-  	public string FirstName {get;}
-  	public Date DateOfBirth {get;}
+    public string LastName {get;}
+    public string FirstName {get;}
+    public Date DateOfBirth {get;}
   
-  	public Person(Guid id, string firstName, string lastName, Date dateOfBirth)
+    public Person(Guid id, string firstName, string lastName, Date dateOfBirth)
     {
-      	 Id = id;
-			   SetLastName(lastName);
-				 SetFirstName(firstName);
-				 SetDateOfBirth(dateOfBirth);
+        Id = id;
+        SetLastName(lastName);
+        SetFirstName(firstName);
+        SetDateOfBirth(dateOfBirth);
     }
   
-  	public void SetLastName(string lastName) {
-      if (string.IsNullOrEmpty) {
-        throw new DomainException("The LastName can not be null or empty.");
-      }
+    public void SetLastName(string lastName) 
+    {
+        if (string.IsNullOrEmpty) 
+	{
+	    throw new DomainException("The LastName can not be null or empty.");
+        }
 
-      if (string.Lenth > 30) {
-        throw new DomainException("The LastName length can not be more than 30 characters.");
-      }
+        if (string.Lenth > 30) 
+	{
+            throw new DomainException("The LastName length can not be more than 30 characters.");
+        }
       
-      LastName = lastName;
+        LastName = lastName;
     }
     ... 
 }
@@ -416,15 +420,16 @@ public class Person : Entity<Guid>
 
   public void SetSalary(decimal salary) 
   {
-        Salary = salary;
+      Salary = salary;
   }
 
   public decimal GetSalary() 
   {
- 			if (Salary > MaximumSalary) {
-        Salary = MaximumSalary
+      if (Salary > MaximumSalary) 
+      {
+          Salary = MaximumSalary
       }
-    	return Salary;
+      return Salary;
   }
 }
 ````
@@ -438,15 +443,16 @@ public class Person : Entity<Guid>
 
   public void SetSalary(decimal salary) 
   {
-      if (Salary > MaximumSalary) {
-					throw new DomainException("The salary is greater than maximum salary.");
+      if (Salary > MaximumSalary) 
+      {
+          throw new DomainException("The salary is greater than maximum salary.");
       }
-    	Salary = salary;
+      Salary = salary;
   }
 
   public decimal GetSalary() 
   {
-    	return Salary;
+      return Salary;
   }
 }
 ````
