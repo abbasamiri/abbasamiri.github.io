@@ -360,7 +360,7 @@ Sometimes there is an operation that involves more than one *Entity* and you are
 
 *Domain Service*s are stateless domain operations which push the entity's behavior out of it.
 
-Imagine that we have two entities in a *Domain Model* called `Person` and `Task` and we have an operation that assigns a *Task* to a *Person*. Which entity owns the Task? It seems to me neither the `Person` nor the `Task` owns the operation and we need a *Domain Service*, Let's call it `PersonTaskOperation`.
+Imagine that we have two entities in a *Domain Model* called `Person` and `Task` and we have an operation that assigns a *Task* to a *Person*. Which entity owns the operation? It seems to me neither the `Person` nor the `Task` owns the operation and we need a *Domain Service*, Let's call it `PersonTaskOperation`.
 
 ```csharp
 public interface IPersonTaskOperation
