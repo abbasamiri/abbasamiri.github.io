@@ -3,7 +3,7 @@ layout: post
 title:  "Bounded Context in Domain Driven Design"
 date:   2021-07-30
 comments_id : "4"
-description: "A *Domain* is what an organization does to carry out its business. A *Domain* normally has some subdomains that work together to perform some tasks that run the business. The main goal of *Domain Driven Design* is to model the *Domain* in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly. Understanding the *Domain* leads to designing the *Domain Model*. The next step is to segregate the domain model into a concept that is called Bounded Context."
+description: "A Domain is what an organization does to carry out its business. A Domain normally has some subdomains that work together to perform some tasks that run the business. The main goal of Domain Driven Design is to model the Domain in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly. Understanding the Domain leads to designing the Domain Model. The next step is to segregate the domain model into a concept that is called Bounded Context."
 ---
 
 ![](/assets/images/article-image-11.jpg)
