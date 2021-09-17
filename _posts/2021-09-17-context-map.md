@@ -12,9 +12,9 @@ description: "Context Map is the important part of Domain Driven Design. It demo
 
 A *Context Map* defines a relationship between two *Bounded Context*. The relationship is influenced by the present state of the domain, technical and organizational concerns.     
 
-The relationship between *Bounded context*s causes the relationship between teams.
+The relationship between *Bounded Context*s causes the relationship between teams.
 
-The touchpoints  between *Bounded Context*s are called *Contracts*. The *Contracts* can be categorized into eight types: 
+The touchpoints between *Bounded Context*s are called *Contracts*. The *Contracts* can be categorized into eight types: 
 
 1. [Partnership](#Partnership)
 2. [Shared Kernel](#Shared Kerne)
@@ -63,7 +63,7 @@ To achieve the *Shared Kernel* goal's, the **commitment** and **synchronization*
 
 ## Customer-Supplier
 
-This kind of integration is based on providing services from one *Bounded Context* (*Supplier* or *upstream*) to another *Bounded Context* (*Customer* or *Downstream*).
+This kind of integration is based on providing services from one *Bounded Context* (*Supplier* or *Upstream*) to another *Bounded Context* (*Customer* or *Downstream*).
 
 
 
@@ -83,7 +83,7 @@ This kind of integration is like the *Customer-Supplier*, but the *Supplier* doe
 
 ![](/assets/images/article-image-20.png)
 
-This kind of relationship mostly happens when the *Supplier* (upstream context) is not able to collaborate with the *Customer* (Downstream context) and the *Customer* needs to conform to the *Supplier*. For instance, The *Supplier* is a third-party component.
+This kind of relationship mostly happens when the *Supplier* (Upstream context) is not able to collaborate with the *Customer* (Downstream context) and the *Customer* needs to conform to the *Supplier*. For instance, The *Supplier* is a third-party component.
 
 
 
@@ -121,7 +121,7 @@ When a *Bounded Context* has a relationship with multiple *Bounded Context*; it 
 
 ## Published Language
 
-This kind of integration provides a language from upstream to describe and formalize the details of integration in which downstream can use it. *Published Language* often used alongside the *Open Host Service*. 
+This kind of integration provides a language from Upstream to describe and formalize the details of integration in which Downstream can use it. *Published Language* often used alongside the *Open Host Service*. 
 
 
 
@@ -129,7 +129,7 @@ This kind of integration provides a language from upstream to describe and forma
 
 
 
-*Published Language* is like a document of the service(s) that upstream provides for downstream; this kind of document makes a lower disruption from downstream to upstream.
+*Published Language* is like a document of the service(s) that Upstream provides for Downstream; this kind of document makes a lower disruption from Downstream to Upstream.
 
 *Published Language* can be defined with XML Schema or JSON Schema.
 
@@ -145,4 +145,5 @@ This kind of integration can be used when the cost of other integrations are not
 
 ## Summary
 
-*Context map* is a concept that represents the system's bounded contexts and integrations between them. There are several methods of integration which also represent the relationship between teams that are responsible for bounded contexts. It is important to choose an appropriate method of integration in the Domain Model.
+*Context map* is a concept that represents the system's *Bounded Context*s and integrations between them. There are several methods of integration which also represent the relationship between teams that are responsible for *Bounded Context*s. It is important to choose an appropriate method of integration in the Domain Model.
+
