@@ -10,7 +10,7 @@ description: "Context Map is the important part of Domain Driven Design. It demo
 
 *Context Map* is the important part of *Domain Driven Design*. It demonstrates the integration points and the flow of data between *Bounded Context*s. *Bounded Context*s are not independent. In fact, a system cannot exist without the interaction between its components. In this article I will describe the *Context Map*.
 
-A *Context Map* defines a relationship between two *Bounded Context*. The relationship is influenced by the present state of the domain, technical and organizational concerns.     
+A *Context Map* defines a relationship between two *Bounded Contexts*. The relationship is influenced by the present state of the domain, technical and organizational concerns.     
 
 The relationship between *Bounded Context*s causes the relationship between teams.
 
@@ -89,7 +89,7 @@ This kind of relationship mostly happens when the *Supplier* (Upstream context) 
 
 ## Anticorruption Layer
 
-This kind of integration is based on the fact that two different *Bounded Context* may have different *Ubiquitous Language* and/or different modeling techniques. This differentiation in the context of integration may leads to adaptation that causes corruption in  the *Bounded Context*. To prevent the corruption, *Anticorruption Layer* can be used.
+This kind of integration is based on the fact that two different *Bounded Context* may have different *Ubiquitous Language* and/or different modeling techniques. This differentiation in the context of integration may lead to adaptation that causes corruption in  the *Bounded Context*. To prevent the corruption, *Anticorruption Layer* can be used.
 
 
 
@@ -137,7 +137,7 @@ This kind of integration provides a language from Upstream to describe and forma
 
 ## Separate Ways
 
-This kind of integration can be used when the cost of other integrations are not affordable; technical and/or political complexities could be reasons to choose this method. In this way the integration could be designed in a *Separate Ways* like integration via user interface.
+This kind of integration can be used when the cost of other integrations is not affordable; technical and/or political complexities could be reasons to choose this method. In this way the integration could be designed in a *Separate Ways* like integration via user interface.
 
 
 
@@ -145,5 +145,5 @@ This kind of integration can be used when the cost of other integrations are not
 
 ## Summary
 
-*Context map* is a concept that represents the system's *Bounded Context*s and integrations between them. There are several methods of integration which also represent the relationship between teams that are responsible for *Bounded Context*s. It is important to choose an appropriate method of integration in the Domain Model.
+*Context map* is a concept that represents the system's *Bounded Context*s and integrations between them. There are several methods of integration which also represent the relationship between teams that are responsible for *Bounded Context*s. It is important to choose a proper method of integration in the Domain Model.
 
