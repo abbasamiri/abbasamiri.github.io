@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Context Map"
+title:  "Context Map in Domain Driven Design"
 date:   2021-09-17
 comments_id : "6"
 description: "Context Map is the important part of Domain Driven Design. It demonstrates the integration points and the flow of data between Bounded Contexts. Bounded Contexts are not independent. In fact, a system cannot exist without the interaction between its components."
