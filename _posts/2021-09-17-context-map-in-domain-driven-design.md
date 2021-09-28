@@ -8,7 +8,7 @@ description: "Context Map is the important part of Domain Driven Design. It demo
 
 ![](/assets/images/article-image-15.jpg)
 
-*Context Map* is the important part of *Domain Driven Design*. It demonstrates the integration points and the flow of data between *Bounded Context*s. *Bounded Context*s are not independent. In fact, a system cannot exist without the interaction between its components. In this article I will describe the *Context Map*.
+*Context Map* is an important part of *Domain Driven Design*. It demonstrates the integration points and the flow of data between *Bounded Context*s. *Bounded Context*s is not independent. A system cannot exist without the interaction between its components. In this article, I will describe the *Context Map*.
 
 A *Context Map* defines a relationship between two *Bounded Contexts*. The relationship is influenced by the present state of the domain, technical and organizational concerns.     
 
@@ -35,7 +35,7 @@ The touchpoints between *Bounded Context*s are called *Contracts*. The *Contract
 
 ## Partnership
 
-This kind of integration is mostly based on connection between teams. They cooperate together to have a clear contract that defines the connection between the *Bounded Contexts*.
+This kind of integration is mostly based on connections between teams. They cooperate together to have a clear contract that defines the connection between the *Bounded Contexts*.
 
 
 
@@ -43,7 +43,7 @@ This kind of integration is mostly based on connection between teams. They coope
 
 
 
-To achieve the *Partnership* goal's, the **communication** and **synchronization** between teams is crucially important. 
+To achieve the Partnership goals, the **communication** and **synchronization** between teams are crucially important. 
 
 
 
@@ -57,7 +57,7 @@ This kind of integration is based on sharing part of the *Domain Model* which de
 
 
 
-To achieve the *Shared Kernel* goal's, the **commitment** and **synchronization** between teams is crucially important.
+To achieve the *Shared Kernel* goals, the **commitment** and **synchronization** between teams is crucially important.
 
 
 
@@ -89,7 +89,7 @@ This kind of relationship mostly happens when the *Supplier* (Upstream context) 
 
 ## Anticorruption Layer
 
-This kind of integration is based on the fact that two different *Bounded Context* may have different *Ubiquitous Language* and/or different modeling techniques. This differentiation in the context of integration may lead to adaptation that causes corruption in  the *Bounded Context*. To prevent the corruption, *Anticorruption Layer* can be used.
+This kind of integration is based on the fact that two different *Bounded Contexts* may have different *Ubiquitous Language* and/or different modeling techniques. This differentiation in the context of integration may lead to adaptation that causes corruption in the *Bounded Context*. To prevent corruption, *Anticorruption Layer* can be used.
 
 
 
@@ -145,5 +145,5 @@ This kind of integration can be used when the cost of other integrations is not 
 
 ## Summary
 
-*Context map* is a concept that represents the system's *Bounded Context*s and integrations between them. There are several methods of integration which also represent the relationship between teams that are responsible for *Bounded Context*s. It is important to choose a proper method of integration in the Domain Model.
+*Context map* is a concept that represents the system's *Bounded Context*s and integrations between them. There are several methods of integration that also represent the relationship between teams that are responsible for *Bounded Context*s. It is important to choose a proper method of integration in the Domain Model.
 
