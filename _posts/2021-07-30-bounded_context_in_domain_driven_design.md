@@ -94,9 +94,7 @@ So far so good, now we have our *Problem Space*.
 
 The next step is distilling information from the *Problem Space* to build a *Domain Model* that responds to the use-cases. This process is called *Knowledge crunching*. After *Knowledge crunching*, the team should reach a certain level of a common language which is called *Ubiquitous Language*.
 
-Remember that we are not going to model the real world characteristics of drones such as maintenance history, mileage, age, model number, performance characteristics, and so on. In fact, we are going to design a system to respond to the user-cases needs.  
-
-It is time to divide the *Problem Space* into *Bounded Contexts*. 
+Remember that we are not going to model the real world characteristics of drones such as maintenance history, mileage, age, model number, performance characteristics, and so on. In fact, we are going to design a system to respond to the use case's needs. It is time to divide the *Problem Space* into *Bounded Contexts*. 
 
 *Functional cohesion* could be a method to define *Bounded Context*. It means that we could put subdomains that are closely related to each other to a specific *Bounded Context*. Based on *Functional cohesion* we could define seven *Bounded Context*s.
 
@@ -118,7 +116,7 @@ It is time to divide the *Problem Space* into *Bounded Contexts*.
 
 *Functional cohesion* helped us to define our *Bounded context*s. We should remember that designing a *Domain Model* is an evolving process, this design could be altered when we go further and be aware of other constraints and business rules.
 
-**Note:** The solid lines between the *Bounded context*s is the subject of *Context Map* which demonstrate the integration points and the flow of data between *Bounded Context*s. 
+**Note:** The solid lines between the *Bounded context*s are the subject of *Context Map* which demonstrates the integration points and the flow of data between *Bounded Context*s. 
 
 **Note:** Name the *Bounded Context*s based on *Ubiquitous Language*.
 
@@ -130,7 +128,7 @@ Let's choose one of our *Bounded context*s and go through it to discover more. L
 
 ## Shipping Bounded context
 
-The  Shipping bounded context must handle following use-cases:
+The  Shipping bounded context must handle the following use-cases:
 
 1. A customer can request a drone to pick up goods from a business that is registered with the drone delivery service.
 2. The sender generates a tag (barcode or RFID) to put on the package.
