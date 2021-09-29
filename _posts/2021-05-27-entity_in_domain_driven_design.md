@@ -3,7 +3,7 @@ layout: post
 title:  "Entity in Domain Driven Design"
 date:   2021-05-27
 comments_id : "3"
-description: "In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article I will describe the Entity's characteristics and how they can be implemented in C#"
+description: "In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article, I will describe the Entity's characteristics and how they can be implemented in C#"
 ---
 
 ![Entity](/assets/images/article-image-8.jpg)
@@ -35,7 +35,7 @@ description: "In Domain Driven Design, Entity is the concept that its individual
 
 # Entity
 
-In *Domain Driven Design*, *Entity* is the concept that its **individuality** is important. An *Entity* is a unique thing that its state can be changed. These characteristics make *Entity* an important building block of *Domain Driven Design*. In this article I will describe the *Entity*'s characteristics and how they can be implemented in C#.
+In *Domain Driven Design*, *Entity* is the concept that its **individuality** is important. An *Entity* is a unique thing that its state can be changed. These characteristics make *Entity* an important building block of *Domain Driven Design*. In this article, I will describe the *Entity*'s characteristics and how they can be implemented in C#.
 
 ## Identity
 
@@ -51,7 +51,7 @@ In *Domain Driven Design*, *Entity* is the concept that its **individuality** is
 
 #### 1 - Natural Identifier
 
-Sometimes the entity itself has a natural identifier like *Social Security Number*, *National Id Number*, and so on. It is an ideal identity which, if it exists, should be used. Sometimes it is necessary that the *Identity* be verified by the organization that issued the *Identity*. In fact, another system provides this kind of *Identity* and using it, may involve the system to communicate with other systems which increases the complexity. 
+Sometimes the entity itself has a natural identifier like *Social Security Number*, *National Id Number*, and so on. It is an ideal identity that, if it exists, should be used. Sometimes it is necessary that the *Identity* be verified by the organization that issued the *Identity*. In fact, another system provides this kind of *Identity*, and using it, may involve the system to communicate with other systems which increases the complexity. 
 
 #### 2 - User provided Identity
 
@@ -63,7 +63,7 @@ Sometimes the application provides the *Identity* like *Incremental Numeric Coun
 
 ##### 3.1 - Incremental Numeric Counters
 
-*Incremental Numeric Counters* is a global component over the application whose responsibility is to generate a number per request, this number is incremental. In this scenario we should consider that the application would be distributed, so every node of the application generates the number individually which causes the non-unique *Identity* on the whole. To prevent the problem the last number should be saved somewhere safe and all nodes of the application used this number to generate a new one and replace the old number with a new one. It would be a complicated scenario because the component falls into [*race condition*](https://en.wikipedia.org/wiki/Race_condition).
+*Incremental Numeric Counter* is a global component over the application whose responsibility is to generate a number per request, this number is incremental. In this scenario we should consider that the application would be distributed, so every node of the application generates the number individually which causes the non-unique *Identity* on the whole. To prevent the problem the last number should be saved somewhere safe and all nodes of the application used this number to generate a new one and replace the old number with a new one. It would be a complicated scenario because the component falls into [*race condition*](https://en.wikipedia.org/wiki/Race_condition).
 
 ##### 3.2 - GUID
 
@@ -93,9 +93,9 @@ public class Location
 
 #### 5 - Database provided Identity
 
-Sometimes developers prefer that the database generates the *Identity* for an *Entity*. It mostly happens when an *Entity* inserted into a table and an auto-generated field generates a value that is unique inside the table, it could be easy to implement, but the *Identity* generation postpones to when the *Entity* is persisted. If timing of *Identity* generation matters, this method should be considered carefully. Imagine that you create a new *Entity*, before it persisted, the *Entity* does not exist, you can not do anything with it, for instance, you can not have more than one entity into a collection because they are not distinguishable or you can not use *Domain Events* because the entity has not any *Identity*. These considerations may completely change your domain model's design.
+Sometimes developers prefer that the database generates the *Identity* for an *Entity*. It mostly happens when an *Entity* is inserted into a table and an auto-generated field generates a value that is unique inside the table, it could be easy to implement, but the *Identity* generation postpones to when the *Entity* is persisted. If the timing of *Identity* generation matters, this method should be considered carefully. Imagine that you create a new *Entity* before it persisted, the *Entity* does not exist, you cannot do anything with it, for instance, you cannot have more than one entity into a collection because they are not distinguishable or you cannot use *Domain Events* because the entity has not any *Identity*. These considerations may completely change your domain model's design.
 
-In this method, we should distinguish between *Natural Primary Key* and *Surrogate Primary Key*. A *Natural Primary Key* is a column or set of columns that already exist in the table (e.g. they are attributes of the entity within the data model) and uniquely identify a record in the table. . A *Surrogate Primary Key* is a system generated (could be GUID, sequence, etc.) value with no business meaning that is used to uniquely identify a record in a table. 
+In this method, we should distinguish between *Natural Primary Key* and *Surrogate Primary Key*. A *Natural Primary Key* is a column or set of columns that already exist in the table (e.g. they are attributes of the entity within the data model) and uniquely identify a record in the table. . A *Surrogate Primary Key* is a system-generated (could be GUID, sequence, etc.) value with no business meaning that is used to uniquely identify a record in a table. 
 
 For more information about *Natural Primary Key* and *Surrogate Primary Key* take a look at [Surrogate Key vs Natural Key Differences and When to Use in SQL Server](https://www.mssqltips.com/sqlservertip/5431/surrogate-key-vs-natural-key-differences-and-when-to-use-in-sql-server/).
 
@@ -103,7 +103,7 @@ For more information about *Natural Primary Key* and *Surrogate Primary Key* tak
 
 ### Value object as Identity type
 
-The nature of [*Value objects*](https://abbasamiri.github.io/2021/03/21/value_object_in_domain_driven_design.html) makes them ideal *Identity*'s type, its Immutability is the most important aspect of *Identity*.
+The nature of [*Value objects*](https://abbasamiri.github.io/2021/03/21/value_object_in_domain_driven_design.html) makes them ideal *Identity* type, its Immutability is the most important aspect of *Identity*.
 
 Consider the `Location` *Entity*. We can push the *Identity* type into the `GeoLocation` *Value Object*.
 
@@ -186,7 +186,7 @@ Pushing behavior into *Value Objects* makes an *Entity* focused and more underst
 
 
 
-*Entities* suffer from *AnemicDomainModel* if the designer thinks about an *Entity* as a bunch of data. In this way there are no or a few methods inside the object to change the *Entity*'s state. This kind of mindset comes from *Database Design* in which everything is data and an application or a stored procedure is responsible for CRUD operations.
+*Entities* suffer from *AnemicDomainModel* if the designer thinks about an *Entity* as a bunch of data. In this way, there are no or a few methods inside the object to change the *Entity*'s state. This kind of mindset comes from *Database Design* in which everything is data and an application or a stored procedure is responsible for CRUD operations.
 
 *Object oriented design* needs a different mentality, the designer should think about the behaviors of an object and define attributes to support the behaviors. One method that helps a designer to reach a certain level of this mentality is defining the attribute's setter of an object as `private` then writing methods to change the state based on domain rules. Let's explain the method with code.
 
@@ -199,7 +199,7 @@ public class Person : Entity
 }
 ````
 
-This class ,obviously, suffers from the *Anemic Domain Model*. If an application wants to change the `LastName`, it should do that by changing the `LastName` directly. The better version would be something like this:
+This class, obviously, suffers from the *Anemic Domain Model*. If an application wants to change the `LastName`, it should do that by changing the `LastName` directly. The better version would be something like this:
 
 ````csharp
 public class Person : Entity
@@ -223,13 +223,13 @@ public class Person : Entity
 }
 ````
 
-In this way the logic of the `Person` is inside the object and the application does not involve in the details of changing the object's state rules. For the complicated *Entities* that encapsulate business rules, preventing *Anemic Domain Model* results in great improvement in *Domain Model* and increases clarity and maintainability.
+In this way, the logic of the `Person` is inside the object and the application does not involve the details of changing the object's state rules. For the complicated *Entities* that encapsulate business rules, preventing the *Anemic Domain Model* results in a great improvement in *Domain Model* and increases clarity and maintainability.
 
 
 
 ## Do not model the real life
 
-Every application has several use-cases and all components in the *Domain Model* are responsible to serve the use-cases. There is always a tendency to model a concept in the *Domain Model* from the general concept of the *Entity*. In most cases  it does not help and pollutes the *Entity* with behaviors that would not be used. We should just consider the behaviors that our use-cases need, For instance, imagine the *Customer* entity in the Banking system.
+Every application has several use-cases and all components in the *Domain Model* are responsible to serve the use-cases. There is always a tendency to model a concept in the *Domain Model* from the general concept of the *Entity*. In most cases,  it does not help and pollutes the *Entity* with behaviors that would not be used. We should just consider the behaviors that our use-cases need; for instance, imagine the *Customer* entity in the Banking system.
 
 ````csharp
 public class Person : Entity
@@ -251,7 +251,7 @@ In this way, we should remember the *[You aren't gonna need it](https://en.wikip
 
 ## Entity construction
 
-Every *Entity* should have a method or methods to initialize an *Entity* with the given data. Normally the Application Layer constructs the *Entity* to serve a use-case. The construction can be implemented with class constructor or [Factory method](https://en.wikipedia.org/wiki/Factory_method_pattern#:~:text=In%20class%2Dbased%20programming%2C%20the,object%20that%20will%20be%20created.)s.
+Every *Entity* should have a method or methods to initialize an *Entity* with the given data. Normally the Application Layer constructs the *Entity* to serve a use-case. The construction can be implemented with a class constructor or [Factory method](https://en.wikipedia.org/wiki/Factory_method_pattern#:~:text=In%20class%2Dbased%20programming%2C%20the,object%20that%20will%20be%20created.)s.
 
 The method you choose to construct an *Entity* has two main responsibilities:
 
@@ -303,7 +303,7 @@ The *Specification* pattern could be useful for validation and invariants, it al
 
 The *Specification* pattern encapsulates a specific concept, logic or strategy in a single class which increases testability and enhances expressiveness.
 
-Imagine that you have a website that people can register themselves into your website, A person who want to register should have eligible to be accepted into your website, the eligibility is based on some rules, for instance, the person should have a valid  email address and a valid bank account, these two rules can be implemented in to specification class.
+Imagine that you have a website that people can register themselves into your website, A person who wants to register should be eligible to be accepted into your website, the eligibility is based on some rules, for instance, the person should have a valid  email address and a valid bank account, these two rules can be implemented into specification class.
 
 
 
@@ -358,7 +358,7 @@ else
 
 Sometimes there is an operation that involves more than one *Entity* and you are not sure which *Entity* owns the operation, it is a sign that we need a *Domain Service*.
 
-*Domain Service*s are stateless domain operations which push the entity's behavior out of it.
+*Domain Service*s are stateless domain operations that push the entity's behavior out of it.
 
 Imagine that we have two entities in a *Domain Model* called `Person` and `Task` and we have an operation that assigns a *Task* to a *Person*. Which entity owns the operation? It seems to me neither the `Person` nor the `Task` owns the operation and we need a *Domain Service*, Let's call it `PersonTaskOperation`.
 
@@ -372,7 +372,7 @@ public interface IPersonTaskOperation
 
 ## Good things to avoid!
 
-Design patterns are good things, they can resolve the complex problem with best practices, but sometimes we should prevent using them, even if it is applicable in *DDD*. The question is "Why?".
+Design patterns are good things, they can resolve complex problems with best practices, but sometimes we should prevent using them, even if it is applicable in *DDD*. The question is "Why?".
 
 Design patterns have many boilerplates and they increase the complexity, domain masters are not developers, they may not understand those patterns which makes a great problem. Let's  take a look at some Design patterns  that can be used in a Domain Model, but should not be used.
 
@@ -398,15 +398,15 @@ What are those things? *Originator*, *Memento*, *Caretaker*, are they business's
 
 
 
-That is interesting too. *State* pattern allows us to control entity's life cycle. In the lifetime of an *Entity*, its state changes and the *State* pattern helps us to manage it.
+That is interesting too. *State* pattern allows us to control an entity's life cycle. In the lifetime of an *Entity*, its state changes and the *State* pattern helps us to manage it.
 
 Let's take a look at its class diagram.
 
 ![state](/assets/images/article-image-10.gif)
 
-Imagine entity's state with this pattern. Too many boilerplates must be implemented. Like the *Memento* pattern, using *State* pattern pollutes the *Domain Model* with objects that domain masters may not understand.
+Imagine an entity's state with this pattern. Too many boilerplates must be implemented. Like the *Memento* pattern, using the *State* pattern pollutes the *Domain Model* with objects that domain masters may not understand.
 
-You may ask me "Are you telling us that *Gang of Four* were wrong?", of course not ,developers should use those patterns in the *infrastructure* which is excellent, but not in the *Domain Model*.
+You may ask me "Are you telling us that *Gang of Four* was wrong?", of course not, developers should use those patterns in the *infrastructure* which is excellent, but not in the *Domain Model*.
 
 
 
@@ -418,7 +418,7 @@ You may ask me "Are you telling us that *Gang of Four* were wrong?", of course n
 
 
 
-Inside an entity, operations can be categorized in *Command* and *Query*. Commands are operations that change the internal state of an entity and queries are operations that do some calculations and return the result without changing the internal state of the entity. Joining these two operations could be problematic in some situations. In this way the concept of *Side-Effect-Free* comes into *DDD*.
+Inside an entity, operations can be categorized in *Command* and *Query*. Commands are operations that change the internal state of an entity and queries are operations that do some calculations and return the result without changing the internal state of the entity. Joining these two operations could be problematic in some situations. In this way, the concept of *Side-Effect-Free* comes into *DDD*.
 
 Consider that you have the *Entity* below:
 
