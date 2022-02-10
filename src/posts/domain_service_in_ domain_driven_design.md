@@ -4,7 +4,7 @@ layout: layouts/post.njk
 title:  "Domain Service in Domain Driven Design"
 permalink: "posts/domain-service-in-domain-driven-design/"
 date:   2022-01-04
-comments_id : "4"
+comments_id : "7"
 description: "Domain Service is a concept in Domain Model that fulfills a domain-specific task. Domain Service is stateless and normally act like a orchestration component for entities or encapsulate business policies."
 ---
 

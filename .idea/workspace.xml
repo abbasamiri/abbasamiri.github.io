@@ -20,8 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60d05675-6c88-42d5-beb6-ecb55a04eb84" name="Default Changelist" comment="Change the name.">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/build-eleventy.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/posts/domain_service_in_ domain_driven_design.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/posts/domain_service_in_ domain_driven_design.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +57,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1644475047288</updated>
-      <workItem from="1644475048737" duration="1251000" />
+      <workItem from="1644475048737" duration="1925000" />
     </task>
     <task id="LOCAL-00001" summary="Add Eleventy boilerplate.">
       <created>1644475592473</created>
