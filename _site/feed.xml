@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>Enterprise Software Blog</title>
+	<subtitle>A place for discussing about software.</subtitle>
+	<link href="" rel="self"/>
+	<link href="https://abbasamiri.github.io/"/>
+	<updated>2022-02-10T07:32:40Z</updated>
+	<id>https://abbasamiri.github.io/</id>
+	<author>
+		<name>Abbas Amiri</name>
+		<email>abbas.amiri@outlook.com</email>
+	</author>
+		
+		<entry>
+			<title>Repository in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/repository-in-domain-driven-design/"/>
+			<updated>2020-10-25T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/repository-in-domain-driven-design/</id>
+			<description>Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. This article describes the Repository Design Pattern in the context of Domain Driven Design.</description>
+		</entry>
+		
+		<entry>
+			<title>Value Object in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/value-object-in-domain-driven-design/"/>
+			<updated>2021-03-21T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/value-object-in-domain-driven-design/</id>
+			<description>Value object is one of the Domain Driven Design&#39;s building blocks which makes the design more clean and understandable. Value objects declare entity&#39;s properties expressive, explicit and descriptive with strong encapsulation. These characteristics make them pain free and easy to use a building block of DDD.  In this article I will describe these characteristics and how to implement value objects in C#</description>
+		</entry>
+		
+		<entry>
+			<title>Entity in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/entity-in-domain-driven-design/"/>
+			<updated>2021-05-27T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/entity-in-domain-driven-design/</id>
+			<description>In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article, I will describe the Entity&#39;s characteristics and how they can be implemented in C#</description>
+		</entry>
+		
+		<entry>
+			<title>Bounded Context in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/bounded-context-in-domain-driven-design/"/>
+			<updated>2021-07-30T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/bounded-context-in-domain-driven-design/</id>
+			<description>A Domain is what an organization does to carry out its business. A Domain normally has some subdomains that work together to perform some tasks that run the business. The main goal of Domain Driven Design is to model the Domain in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly. Understanding the Domain leads to designing the Domain Model. The next step is to segregate the domain model into a concept that is called Bounded Context.</description>
+		</entry>
+		
+		<entry>
+			<title>Happy Programmers&#39; Day 2021 !</title>
+			<link href="https://abbasamiri.github.io/posts/happy-programmers-day-2021/"/>
+			<updated>2021-09-13T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/happy-programmers-day-2021/</id>
+			<description>The Day of the Programmer is an international professional day that is celebrated on the 256th (hexadecimal 100th, or the 28th) day of each year (September 13 during common years and on September 12 in leap years).</description>
+		</entry>
+		
+		<entry>
+			<title>Context Map in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/context-map-in-domain-driven-design/"/>
+			<updated>2021-09-17T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/context-map-in-domain-driven-design/</id>
+			<description>Context Map is the important part of Domain Driven Design. It demonstrates the integration points and the flow of data between Bounded Contexts. Bounded Contexts are not independent. In fact, a system cannot exist without the interaction between its components.</description>
+		</entry>
+		
+		<entry>
+			<title>Domain Service in Domain Driven Design</title>
+			<link href="https://abbasamiri.github.io/posts/domain-service-in-domain-driven-design/"/>
+			<updated>2022-01-04T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/domain-service-in-domain-driven-design/</id>
+			<description>Domain Service is a concept in Domain Model that fulfills a domain-specific task. Domain Service is stateless and normally act like a orchestration component for entities or encapsulate business policies.</description>
+		</entry>
+</feed>
+
+
