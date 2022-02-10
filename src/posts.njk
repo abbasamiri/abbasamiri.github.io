@@ -1,0 +1,42 @@
+---
+layout: layouts/base.njk
+pagination:
+    data: collections.post
+    size: 10
+    alias: posts
+permalink: 'posts{% if pagination.pageNumber > 0 %}/page/{{ pagination.pageNumber }}{% endif %}/index.html'
+redirect_from: [/]
+---
+{% for post in posts | reverse %}
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="{{ post.url }}">{{ post.data.title }}</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    {{ post.data.date.toDateString() }}
+                </p>
+            </header>
+            <section class="text-justify">{{ post.data.description }}</section>
+        </article>
+    </div>
+{% endfor %}
+{% if pagination.links.length > 1    %}
+    <nav class="paginate-container" aria-label="Pagination">
+        <div class="pagination">
+            {% if pagination.href.previous %}
+                <a class="previous_page" rel="prev" href="{{ pagination.href.previous }}" aria-label="Previous Page">Previous</a>
+            {% else %}
+                <span class="previous_page" aria-disabled="true">Previous</span>
+            {% endif %}
+            <span class="color-fg-attention" aria-disabled="true">Page {{ pagination.pageNumber + 1 }} of {{ pagination.links.length }}</span>
+            {% if pagination.href.next %}
+                <a class="next_page" rel="next" href="{{ pagination.href.next }}" aria-label="Next Page">Next</a>
+            {% else %}
+                <span class="next_page" aria-disabled="true">Next</span>
+            {% endif %}
+        </div>
+    </nav>
+{% endif %}

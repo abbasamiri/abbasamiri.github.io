@@ -1,0 +1,12 @@
+---
+permalink: assets/css/site.css
+---
+{% set css %}
+    {% include "./_assets/primer.css" %}
+    {% include "./_assets/prism-theme-vs.css" %}
+    {% include "./_assets/fontello.css" %}
+    {% include "./_assets/site.css" %}
+
+{% endset %}
+{{ css | cssmin | safe }}
+

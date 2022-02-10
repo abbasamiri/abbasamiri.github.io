@@ -1,0 +1,22 @@
+{
+  "title": "Enterprise Software Blog",
+  "url": "https://abbasamiri.github.io/",
+  "language": "en",
+  "canonicalUrl": "https://github.com/abbasamiri/abbasamiri.github.io",
+  "description": "A place for discussing about software.",
+  "feed": {
+    "subtitle": "A place for discussing about software.",
+    "filename": "feed.xml",
+    "path": "/feed.xml",
+    "id": "https://abbasamiri.github.io/"
+  },
+  "author": {
+    "name": "Abbas Amiri",
+    "title": "Software Engineer",
+    "github": "https://github.com/abbasamiri",
+    "stackoverflow": "https://stackoverflow.com/users/2234569/abbas-amiri",
+    "twitter": "https://twitter.com/AbbasAmirii",
+    "email": "abbas.amiri@outlook.com",
+    "url": "https://abbasamiri.github.io/"
+  }
+}

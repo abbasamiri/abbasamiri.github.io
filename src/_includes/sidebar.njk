@@ -1,0 +1,51 @@
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
+             style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">{{ metadata.author.name }}</h3>
+        <h3 class="text-center">{{ metadata.author.title }}</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://{{ metadata.author.email }}" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a href="{{ metadata.author.github }}" title="Github" target="_blank"><i
+                        class="icon-github-circled"></i></a>
+            <a href="{{ metadata.author.stackoverflow }}" title="Stackoverflow" target="_blank"><i
+                        class="icon-stackoverflow-1"></i></a>
+            <a href="{{ metadata.author.twitter }}" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
