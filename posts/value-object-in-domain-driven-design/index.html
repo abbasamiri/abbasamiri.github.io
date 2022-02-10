@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Value object is one of the Domain Driven Design&#39;s building blocks which makes the design more clean and understandable. Value objects declare entity&#39;s properties expressive, explicit and descriptive with strong encapsulation. These characteristics make them pain free and easy to use a building block of DDD.  In this article I will describe these characteristics and how to implement value objects in C#">
+    <meta name="robots" content="index, archive">
+    <meta property="og:title" content="Enterprise Software Blog"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="A place for discussing about software."/>
+    <meta property="og:description" content="A place for discussing about software."/>
+    <meta property="og:url" content="/"/>
+    <meta property="og:site_name" content="Enterprise Software Blog"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Enterprise Software Blog"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <title>Enterprise Software Blog  - Value Object in Domain Driven Design</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-179743488-1');
+    </script>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-item">
+        <a href="/" class="Header-link f4 d-flex flex-items-center font-fugaz-one">
+            Enterprise Software Blog
+        </a>
+    </div>
+    <div class="Header-item Header-item--full">
+    </div>
+    <div class="Header-item mr-0">
+        <a href="/feed.xml" target="_blank">
+            <img src="/assets/images/rss-icon.png" alt="RSS">
+        </a>
+    </div>
+</header>
+<div class="container-xl clearfix">
+    <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
+        <div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
+             style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">Abbas Amiri</h3>
+        <h3 class="text-center">Software Engineer</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
+                        class="icon-github-circled"></i></a>
+            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
+                        class="icon-stackoverflow-1"></i></a>
+            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
+
+    </div>
+    <div class="col-12 col-xl-9 col-md-9 col-sm-12 col-lg-9 float-left">
+        <div class="Box m-2 color-shadow-medium text-justify">
+    <article class="Box-body">
+        <header>
+            <h2>Value Object in Domain Driven Design</h2>
+            <p class="color-gray-5"><i class="icon-calendar-outlilne"></i> Sun Mar 21 2021</p>
+        </header>
+        <hr>
+        <section class="markdown-body">
+            <p><img src="/assets/images/article-image-6.jpg" alt="value-object-image-1"></p>
+<ul>
+<li><a href="#value-objects">Value Objects</a>
+<ul>
+<li><a href="#characteristics">Characteristics</a>
+<ul>
+<li><a href="#descriptive">Descriptive</a></li>
+<li><a href="#conceptual-whole">Conceptual Whole</a></li>
+<li><a href="#immutability">Immutability</a></li>
+<li><a href="#replaceability">Replaceability</a></li>
+<li><a href="#identity-less">Identity-Less</a></li>
+<li><a href="#attributebased-equality">Attribute‐Based Equality</a></li>
+<li><a href="#behaviorrich">Behavior‐Rich</a></li>
+<li><a href="#combinable">Combinable</a></li>
+<li><a href="#selfvalidating">Self‐Validating</a></li>
+</ul>
+</li>
+<li><a href="#implementation">Implementation</a>
+<ul>
+<li><a href="#method-one">Method One</a></li>
+<li><a href="#method-two">Method Two</a></li>
+</ul>
+</li>
+<li><a href="#persistence">Persistence</a>
+<ul>
+<li><a href="#nosql">NoSQL</a></li>
+<li><a href="#sql">SQL</a></li>
+</ul>
+</li>
+<li><a href="#summary">Summary</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="value-objects" tabindex="-1">Value Objects <a class="direct-link" href="#value-objects" aria-hidden="true">#</a></h1>
+<blockquote>
+<p>Many objects have no conceptual identity. These objects describe some characteristic of a thing.</p>
+</blockquote>
+<blockquote>
+<p>– Eric Evans, Domain-Driven Design</p>
+</blockquote>
+<p><em>Value object</em> is one of the <em>Domain Driven Design</em>’s building blocks which makes the design more clean and understandable. <em>Value objects</em> declare entity’s properties expressive, explicit and descriptive with strong encapsulation. These characteristics make them pain free and easy to use a building block of <em>DDD</em>.  In this article I will describe these characteristics and how to implement <em>value objects</em> in C#.</p>
+<h2 id="characteristics" tabindex="-1">Characteristics <a class="direct-link" href="#characteristics" aria-hidden="true">#</a></h2>
+<h3 id="descriptive" tabindex="-1">Descriptive <a class="direct-link" href="#descriptive" aria-hidden="true">#</a></h3>
+<p>An <em>value object</em> is a descriptive attribute that describes an entity’s state. An object’s attribute is descriptive if it has a clear and concise definition. For instance, consider the following class:</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Foo</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">decimal</span></span> Price <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>The <code>Price</code> is not descriptive because it is just a number, it does not tell you about its currency, is it USD or Euro or something else? a better definition could be something like this:</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Foo</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">Money</span> Price <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Money</span> </span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">decimal</span></span> Price <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Currency <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p><code>Money</code> is a <em>value object</em> which describes the <code>Price</code> type.</p>
+<p>Using <em>value objects</em> in a descriptive way prevents <a href="https://wiki.c2.com/?PrimitiveObsession">Primitive Obsession</a> code smell (a code smell is a hint that something has gone wrong somewhere in your code). Primitive Obsession is using primitive data types to represent domain ideas.</p>
+<p>Consider the <code>System.Drawing.Point</code> and <code>System.Drawing.Size</code> in .Net Framework, those types make an attribute in a class, descriptive.</p>
+<p>It could be helpful to understand <em>value objects</em> in a way that they normally <strong>measure</strong> or <strong>quantify</strong> something. For instance <code>Age</code> could be a <em>value object</em>.</p>
+<h3 id="conceptual-whole" tabindex="-1">Conceptual Whole <a class="direct-link" href="#conceptual-whole" aria-hidden="true">#</a></h3>
+<p>Every attribute in a <em>value object</em> is related to others, all attributes together describe the concept that the <em>value object</em> represents and provides a cohesive meaning.</p>
+<p><em>Conceptual Whole</em> is not just a way for grouping attributes together, the attributes completes each other. For instance, a person’s name consists of three attributes: <code>FirstName</code>, <code>LastName</code> and <code>MiddleName</code>, one without others is incomplete and does not represent a person’s name.</p>
+<p><a href="https://sundin.github.io/patterns/2018/10/04/whole-value-pattern.html">Whole Value Pattern</a></p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="immutability" tabindex="-1">Immutability <a class="direct-link" href="#immutability" aria-hidden="true">#</a></h3>
+<blockquote>
+<p>In object-oriented and functional programming, an immutable object (unchangeable object) is an object whose state cannot be modified after it is created.</p>
+<p>– <a href="https://en.wikipedia.org/wiki/Immutable_object">Wikipedia</a></p>
+</blockquote>
+<p><em>Immutability</em> is a powerful aspect of programming languages. <em>Value object</em> takes benefit of the aspect to prevent client code to put the <em>value object</em> in a invalid state.</p>
+<p><em>Immutability</em> forces the <em>Value object</em> to have several aspects:</p>
+<ol>
+<li><em>Value objects</em> do not have any method that changes its state.</li>
+<li><em>Value objects</em> can not be extended.</li>
+<li>All fields must be marked read-only.</li>
+<li><em>Value object</em> have constructor(s) or factory method(s) that initiate the object with its values.</li>
+</ol>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">private</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">PersonName</span> <span class="token function">Create</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">PersonName</span><span class="token punctuation">(</span>firstName<span class="token punctuation">,</span> middleName<span class="token punctuation">,</span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="replaceability" tabindex="-1">Replaceability <a class="direct-link" href="#replaceability" aria-hidden="true">#</a></h3>
+<p><em>Value objects</em> are immutable, if an entity has a attribute with a type of <em>value object</em> and the entity’s state changed, based on the attribute, the whole attribute’s value must be replaced with a new one.</p>
+<h3 id="identity-less" tabindex="-1">Identity-Less <a class="direct-link" href="#identity-less" aria-hidden="true">#</a></h3>
+<p><em>Value objects</em> tell us something about other things. How much <em>Money</em> a <em>Person</em> has. What is <em>Position</em> of a <em>Car</em> on a road. <em>Person</em> and <em>Car</em> have identity, but <em>Money</em> and <em>Position</em> do not need one, it is the reason that <em>value objects</em> are identity-less.</p>
+<h3 id="attribute%E2%80%90based-equality" tabindex="-1">Attribute‐Based Equality <a class="direct-link" href="#attribute%E2%80%90based-equality" aria-hidden="true">#</a></h3>
+<p><em>Value objects</em> are Identity-less, so how do we know that two <em>value objects</em> are equal or not?</p>
+<p>The answer is, two <em>value object</em> are equal if they have the same value.<br>
+For instance, two <code>Money</code> are equal if they have the same <code>Amount</code> and <code>Currency</code> or two <code>PersonName</code> are equal if they have the same <code>LastName</code>  and <code>MiddleName</code> and <code>FirstName</code>.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IEquatable<span class="token punctuation">&lt;</span>PersonName<span class="token punctuation">></span></span></span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name">PersonName</span> other<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">ReferenceEquals</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">ReferenceEquals</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> other<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> FirstName <span class="token operator">==</span> other<span class="token punctuation">.</span>FirstName <span class="token operator">&amp;&amp;</span> MiddleName <span class="token operator">==</span> other<span class="token punctuation">.</span>MiddleName <span class="token operator">&amp;&amp;</span> LastName <span class="token operator">==</span> other<span class="token punctuation">.</span>LastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span></span> obj<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token function">ReferenceEquals</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> obj<span class="token punctuation">)</span> <span class="token operator">||</span> obj <span class="token keyword">is</span> <span class="token class-name">PersonName</span> other <span class="token operator">&amp;&amp;</span> <span class="token function">Equals</span><span class="token punctuation">(</span>other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>FirstName<span class="token punctuation">,</span> MiddleName<span class="token punctuation">,</span> LastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="behavior%E2%80%90rich" tabindex="-1">Behavior‐Rich <a class="direct-link" href="#behavior%E2%80%90rich" aria-hidden="true">#</a></h3>
+<p><em>Value objects</em> should have all methods that are related to its own data. This makes a <em>value object</em> behavior-rich and prevents one of the code smells that is called <a href="https://wiki.c2.com/?FeatureEnvySmell">Feature Envy</a>  (A method accesses the data of another object more than its own data).</p>
+<p>For instance, consider the below entity:</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">PersonName</span> Name <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">GetFullName</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Name<span class="token punctuation">.</span>FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Name<span class="token punctuation">.</span>MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Name<span class="token punctuation">.</span>LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p><code>GetFullName</code> is <em>Feature Envy</em> code smell. It would be better to move the method inside the <code>PersonName</code> class.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    </span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line">    </span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">getFullName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span> </span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="combinable" tabindex="-1">Combinable <a class="direct-link" href="#combinable" aria-hidden="true">#</a></h3>
+<p>In the case that <em>value object</em> represents combinable values like numerals or dates, the <em>value object</em> should have methods to create new value.</p>
+<p><code>System.DateTime</code> is a perfect example of a combinable object in .Net Framework.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token comment">// Returns the DateTime resulting from adding the given TimeSpan to this DateTime.</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token class-name">TimeSpan</span> <span class="token keyword">value</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line"><span class="token comment">// Returns the DateTime resulting from adding a fractional number of days to this DateTime.</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> <span class="token function">AddDays</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> <span class="token keyword">value</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line"><span class="token comment">// Returns the DateTime resulting from adding a fractional number of hours to this DateTime.</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token return-type class-name">DateTime</span> <span class="token function">AddHours</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">double</span></span> <span class="token keyword">value</span><span class="token punctuation">)</span></span>
+<span class="highlight-line"><span class="token range operator">..</span><span class="token range operator">..</span></span></code></pre>
+<h3 id="self%E2%80%90validating" tabindex="-1">Self‐Validating <a class="direct-link" href="#self%E2%80%90validating" aria-hidden="true">#</a></h3>
+<p><em>Value objects</em> are instantiated by its constructor(s) or its Factory method(s). These methods are responsible for validating value to prevent <em>value object</em> goes into invalid state.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>firstName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The first name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>middleName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The middle name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>lastName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The last name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h2 id="implementation" tabindex="-1">Implementation <a class="direct-link" href="#implementation" aria-hidden="true">#</a></h2>
+<p><em>Value objects</em> can be implemented in several ways:</p>
+<h3 id="method-one" tabindex="-1">Method One <a class="direct-link" href="#method-one" aria-hidden="true">#</a></h3>
+<p>This is a simple and straight method of implementing a <em>value object</em>. The most important aspect of this method is:</p>
+<ol>
+<li>The class should be  <code>sealed</code>.</li>
+<li>Value properties should have no setters.</li>
+<li>The constructor is responsible for initiating values.</li>
+<li>The constructor is responsible for validating values.</li>
+<li>The <code>Equals</code> should be overridden.</li>
+<li>The <code>GetHashCode</code> should be overridden.</li>
+<li>The <code>ToString</code> should be overridden.</li>
+<li>Providing <code>==</code> and <code>!=</code>  operators make the class more functional.</li>
+</ol>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">sealed</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>firstName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The first name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>middleName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The middle name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>lastName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The last name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span><span class="token punctuation">?</span></span> obj<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> obj<span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">        <span class="token punctuation">{</span></span>
+<span class="highlight-line">            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token punctuation">}</span></span>
+<span class="highlight-line">        </span>
+<span class="highlight-line">        <span class="token keyword">return</span> FirstName <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>PersonName<span class="token punctuation">)</span> obj<span class="token punctuation">)</span><span class="token punctuation">.</span>FirstName <span class="token operator">&amp;&amp;</span></span>
+<span class="highlight-line">            MiddleName <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>PersonName<span class="token punctuation">)</span> obj<span class="token punctuation">)</span><span class="token punctuation">.</span>MiddleName <span class="token operator">&amp;&amp;</span></span>
+<span class="highlight-line">            LastName <span class="token operator">==</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>PersonName<span class="token punctuation">)</span> obj<span class="token punctuation">)</span><span class="token punctuation">.</span>LastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> HashCode<span class="token punctuation">.</span><span class="token function">Combine</span><span class="token punctuation">(</span>FirstName<span class="token punctuation">,</span> MiddleName<span class="token punctuation">,</span> LastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> format<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>format<span class="token punctuation">)</span><span class="token punctuation">)</span> format <span class="token operator">=</span> <span class="token string">"FML"</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">            <span class="token keyword">return</span> format<span class="token punctuation">.</span><span class="token function">ToUpperInvariant</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">switch</span></span>
+<span class="highlight-line">            <span class="token punctuation">{</span></span>
+<span class="highlight-line">                <span class="token string">"FML"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">                <span class="token string">"FL"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">                <span class="token string">"LF"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">                _ <span class="token operator">=></span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FormatException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">format</span><span class="token punctuation">}</span></span><span class="token string"> format string is not supported."</span></span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token punctuation">}</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">PersonName</span> left<span class="token punctuation">,</span> <span class="token class-name">PersonName</span> right<span class="token punctuation">)</span> <span class="token operator">=></span> left<span class="token punctuation">?.</span><span class="token function">Equals</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">PersonName</span> left<span class="token punctuation">,</span> <span class="token class-name">PersonName</span> right<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token operator">!</span><span class="token punctuation">(</span>left <span class="token operator">==</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token return-type class-name">PersonName</span> <span class="token function">Create</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span> <span class="token operator">=></span></span>
+<span class="highlight-line">        <span class="token keyword">new</span> <span class="token constructor-invocation class-name">PersonName</span><span class="token punctuation">(</span>firstName<span class="token punctuation">,</span> middleName<span class="token punctuation">,</span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="method-two" tabindex="-1">Method Two <a class="direct-link" href="#method-two" aria-hidden="true">#</a></h3>
+<p>This method is based on an <code>abstract</code> class that provides basic functionality of <em>value objects</em>.</p>
+<p>For more information about the method, take a look at <a href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects">Implement value objects</a>.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ValueObject</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">protected</span> <span class="token keyword">abstract</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span><span class="token keyword">object</span><span class="token punctuation">></span></span> <span class="token function">GetEqualityComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">object</span><span class="token punctuation">?</span></span> obj<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span>obj <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> obj<span class="token punctuation">.</span><span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token function">GetType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">        <span class="token punctuation">{</span></span>
+<span class="highlight-line">            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token class-name"><span class="token keyword">var</span></span> other <span class="token operator">=</span> <span class="token punctuation">(</span>ValueObject<span class="token punctuation">)</span> obj<span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token function">GetEqualityComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">SequenceEqual</span><span class="token punctuation">(</span>other<span class="token punctuation">.</span><span class="token function">GetEqualityComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token function">GetEqualityComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token punctuation">.</span><span class="token function">Select</span><span class="token punctuation">(</span>x <span class="token operator">=></span> x <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token punctuation">?</span> x<span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token punctuation">.</span><span class="token function">Aggregate</span><span class="token punctuation">(</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token operator">=></span> x <span class="token operator">^</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">ValueObject</span> left<span class="token punctuation">,</span> <span class="token class-name">ValueObject</span> right<span class="token punctuation">)</span> <span class="token operator">=></span> left<span class="token punctuation">?.</span><span class="token function">Equals</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token boolean">false</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">ValueObject</span> left<span class="token punctuation">,</span> <span class="token class-name">ValueObject</span> right<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token punctuation">(</span>left <span class="token operator">==</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ValueObject</span></span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">PersonName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> firstName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> middleName<span class="token punctuation">,</span> <span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>firstName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The first name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>middleName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The middle name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>lastName<span class="token punctuation">)</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">ArgumentException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The last name can not be null or empty."</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">        FirstName <span class="token operator">=</span> firstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        MiddleName <span class="token operator">=</span> middleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        LastName <span class="token operator">=</span> lastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">protected</span> <span class="token keyword">override</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span><span class="token keyword">object</span><span class="token punctuation">></span></span> <span class="token function">GetEqualityComponents</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">yield</span> <span class="token keyword">return</span> FirstName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">yield</span> <span class="token keyword">return</span> MiddleName<span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">yield</span> <span class="token keyword">return</span> LastName<span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line"></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> format<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span><span class="token function">IsNullOrEmpty</span><span class="token punctuation">(</span>format<span class="token punctuation">)</span><span class="token punctuation">)</span> format <span class="token operator">=</span> <span class="token string">"FML"</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> format<span class="token punctuation">.</span><span class="token function">ToUpperInvariant</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">switch</span></span>
+<span class="highlight-line">        <span class="token punctuation">{</span></span>
+<span class="highlight-line">            <span class="token string">"FML"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">MiddleName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token string">"FL"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token string">"LF"</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">LastName</span><span class="token punctuation">}</span></span><span class="token string"> </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">FirstName</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            _ <span class="token operator">=></span> <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FormatException</span><span class="token punctuation">(</span><span class="token interpolation-string"><span class="token string">$"The </span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">format</span><span class="token punctuation">}</span></span><span class="token string"> format string is not supported."</span></span><span class="token punctuation">)</span></span>
+<span class="highlight-line">        <span class="token punctuation">}</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h2 id="persistence" tabindex="-1">Persistence <a class="direct-link" href="#persistence" aria-hidden="true">#</a></h2>
+<h3 id="nosql" tabindex="-1">NoSQL <a class="direct-link" href="#nosql" aria-hidden="true">#</a></h3>
+<p>Object oriented structures can be easily serialized in NoSQL databases. DDD entities can be modeled as a <em>document</em> which most NoSQL databases can understand. <em>Value objects</em> can be part of the entity’s document. There is no need of Joining-tables, Foreign keys, and so on.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span></span>
+<span class="highlight-line"><span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">Guid</span> Id <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">PersonName</span> Name <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">ReadOnlyCollection<span class="token punctuation">&lt;</span>Address<span class="token punctuation">></span></span> Addresses <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonName</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> MiddleName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PersonAddress</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Country <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> State <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> City <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Address <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">private</span> <span class="token keyword">set</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<pre class="language-json"><code class="language-json"><span class="highlight-line"><span class="token property">"Employee"</span><span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token property">"Id"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">    <span class="token property">"Name"</span> <span class="token operator">:</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">        <span class="token property">"FirstName"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">        <span class="token property">"MiddleName"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">        <span class="token property">"LastName"</span><span class="token operator">:</span> <span class="token string">"..."</span></span>
+<span class="highlight-line">    <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">    <span class="token property">"Addresses"</span><span class="token operator">:</span><span class="token punctuation">[</span></span>
+<span class="highlight-line">        <span class="token punctuation">{</span></span>
+<span class="highlight-line">            <span class="token property">"Country"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"State"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"City"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"Address"</span><span class="token operator">:</span> <span class="token string">"..."</span></span>
+<span class="highlight-line">        <span class="token punctuation">}</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">        <span class="token punctuation">{</span></span>
+<span class="highlight-line">            <span class="token property">"Country"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"State"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"City"</span><span class="token operator">:</span> <span class="token string">"..."</span><span class="token punctuation">,</span></span>
+<span class="highlight-line">            <span class="token property">"Address"</span><span class="token operator">:</span> <span class="token string">"..."</span></span>
+<span class="highlight-line">        <span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token punctuation">]</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<h3 id="sql" tabindex="-1">SQL <a class="direct-link" href="#sql" aria-hidden="true">#</a></h3>
+<p>Object oriented design and database design need different mindsets, principles and strategies. As a database designer, an object is a bunch of data with relations, primary keys, foreign keys, indexes, etc. An object oriented designer considers behavior of an object. Thus, two areas of designs should not be mixed. We should not change our object oriented design for the sake  of database design and vice versa. This separation of concerns will make our design highly flexible and maintainable.</p>
+<p>In this way, <em>value object’s</em> properties are part of ab entity’s properties. On one hand, if an entity has one instance of a <em>value object</em>, it can be persisted in the entity’s table. On the other hand, if an entity has  multiple instances of a <em>value object</em>, it can be persisted in a different table with relation to the entity’s table.</p>
+<p><img src="/assets/images/article-image-7.png" alt="value-object-image-2"></p>
+<h2 id="summary" tabindex="-1">Summary <a class="direct-link" href="#summary" aria-hidden="true">#</a></h2>
+<p><em>Value object</em> is a powerful concept in DDD which makes the domain model expressiveness, clean and more understandable.  <em>Value objects</em> have some characteristics which help the designer/developer to detect and implement them easier.  Persistent mechanism of <em>value object</em> in SQL or NoSQL data sources are straight and simple. All of these behaviors make the <em>value object</em> an important building block of DDD.</p>
+
+        </section>
+    </article>
+</div>
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <h3><i class="icon-comment"></i> Comments</h3>
+        <hr>
+        <div class="flash-messages">
+            <div class="flash">
+                <p>Join the discussion for this article on <a href="https://github.com/abbasamiri/abbasamiri.github.io/issues/2" target="_blank">this
+                        ticket</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ml-6 pl-3" id="comment-container"></div>
+    </div>
+</div>
+
+<script>
+    const GH_API_URL = 'https://api.github.com/repos/abbasamiri/abbasamiri.github.io/issues/2/comments';
+    let request = new XMLHttpRequest();
+    request.open('GET', GH_API_URL, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let response = JSON.parse(this.response);
+
+            for (let i = 0; i < response.length; i++) {
+                document.getElementById('comment-container').appendChild(createCommentEl(response[i]));
+            }
+        } else {
+            console.error(this);
+        }
+    };
+
+    function createCommentEl(response) {
+        let comment = document.createElement('div');
+        comment.classList.add('TimelineItem')
+        let date = new Date(response.created_at);
+        let commentText = '';
+        if (window.showdown) {
+            let converter = new showdown.Converter();
+            commentText = converter.makeHtml(response.body);
+        }
+        comment.innerHTML =
+            '<div class="TimelineItem-avatar">\n' +
+            '<img class="avatar" height="40" width="40" alt="@octocat"\n' +
+            'src="' + response.user.avatar_url + '" />\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-badge">\n' +
+            '<i class="icon-comment" style="margin-top: 6px;margin-left: 2px;"></i>\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-body">\n' +
+            '<div class="Box">\n' +
+            '<div class="Box-body">\n' +
+            '<a href="' + response.html_url + '" class="mr-1" target="_blank">' +
+            '<strong>' + response.user.login + '</strong> commented at ' + date.toLocaleString() +
+            '</a>\n' +
+            '<p>' + commentText + '</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n'
+        return comment;
+    }
+
+    request.send();
+</script>
+
+    </div>
+</div>
+<footer class="Box-footer text-center">
+    &copy; <span id="currentYear"></span> Abbas Amiri
+</footer>
+<script>
+    (function () {
+        document.getElementById('currentYear').innerText = (new Date()).getFullYear();
+    })();
+</script>
+</body>
+</html>

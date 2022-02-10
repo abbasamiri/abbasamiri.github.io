@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="A place for discussing about software.">
+    <meta name="robots" content="index, archive">
+    <meta property="og:title" content="Enterprise Software Blog"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="A place for discussing about software."/>
+    <meta property="og:description" content="A place for discussing about software."/>
+    <meta property="og:url" content="/"/>
+    <meta property="og:site_name" content="Enterprise Software Blog"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Enterprise Software Blog"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <title>Enterprise Software Blog </title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-179743488-1');
+    </script>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-item">
+        <a href="/" class="Header-link f4 d-flex flex-items-center font-fugaz-one">
+            Enterprise Software Blog
+        </a>
+    </div>
+    <div class="Header-item Header-item--full">
+    </div>
+    <div class="Header-item mr-0">
+        <a href="/feed.xml" target="_blank">
+            <img src="/assets/images/rss-icon.png" alt="RSS">
+        </a>
+    </div>
+</header>
+<div class="container-xl clearfix">
+    <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
+        <div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
+             style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">Abbas Amiri</h3>
+        <h3 class="text-center">Software Engineer</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
+                        class="icon-github-circled"></i></a>
+            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
+                        class="icon-stackoverflow-1"></i></a>
+            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
+
+    </div>
+    <div class="col-12 col-xl-9 col-md-9 col-sm-12 col-lg-9 float-left">
+        
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/domain-service-in-domain-driven-design/">Domain Service in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Tue Jan 04 2022
+                </p>
+            </header>
+            <section class="text-justify">Domain Service is a concept in Domain Model that fulfills a domain-specific task. Domain Service is stateless and normally act like a orchestration component for entities or encapsulate business policies.</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/context-map-in-domain-driven-design/">Context Map in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Fri Sep 17 2021
+                </p>
+            </header>
+            <section class="text-justify">Context Map is the important part of Domain Driven Design. It demonstrates the integration points and the flow of data between Bounded Contexts. Bounded Contexts are not independent. In fact, a system cannot exist without the interaction between its components.</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/happy-programmers-day-2021/">Happy Programmers&#39; Day 2021 !</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Mon Sep 13 2021
+                </p>
+            </header>
+            <section class="text-justify">The Day of the Programmer is an international professional day that is celebrated on the 256th (hexadecimal 100th, or the 28th) day of each year (September 13 during common years and on September 12 in leap years).</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/bounded-context-in-domain-driven-design/">Bounded Context in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Fri Jul 30 2021
+                </p>
+            </header>
+            <section class="text-justify">A Domain is what an organization does to carry out its business. A Domain normally has some subdomains that work together to perform some tasks that run the business. The main goal of Domain Driven Design is to model the Domain in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly. Understanding the Domain leads to designing the Domain Model. The next step is to segregate the domain model into a concept that is called Bounded Context.</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/entity-in-domain-driven-design/">Entity in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Thu May 27 2021
+                </p>
+            </header>
+            <section class="text-justify">In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article, I will describe the Entity&#39;s characteristics and how they can be implemented in C#</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/value-object-in-domain-driven-design/">Value Object in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Sun Mar 21 2021
+                </p>
+            </header>
+            <section class="text-justify">Value object is one of the Domain Driven Design&#39;s building blocks which makes the design more clean and understandable. Value objects declare entity&#39;s properties expressive, explicit and descriptive with strong encapsulation. These characteristics make them pain free and easy to use a building block of DDD.  In this article I will describe these characteristics and how to implement value objects in C#</section>
+        </article>
+    </div>
+
+    <div class="Box m-2 color-shadow-medium">
+        <article class="Box-body">
+            <header>
+                <h3>
+                    <a href="/posts/repository-in-domain-driven-design/">Repository in Domain Driven Design</a>
+                </h3>
+                <p class="color-gray-5">
+                    <i class="icon-calendar-outlilne"></i> &nbsp
+                    Sun Oct 25 2020
+                </p>
+            </header>
+            <section class="text-justify">Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. This article describes the Repository Design Pattern in the context of Domain Driven Design.</section>
+        </article>
+    </div>
+
+
+
+    </div>
+</div>
+<footer class="Box-footer text-center">
+    &copy; <span id="currentYear"></span> Abbas Amiri
+</footer>
+<script>
+    (function () {
+        document.getElementById('currentYear').innerText = (new Date()).getFullYear();
+    })();
+</script>
+</body>
+</html>

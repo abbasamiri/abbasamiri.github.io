@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "quote": "Always consider the context.",
+    "author": "Andy Hunt"
+  },
+  {
+    "id": 2,
+    "quote": "In a distributed system, you can know where the work is done or you can know when the work is done but you can’t know both.",
+    "author": "Pat Helland"
+  },
+  {
+    "id": 3,
+    "quote": "The contents of a message are always from the past! They are never now.",
+    "author": "Pat Helland"
+  },
+  {
+    "id": 4,
+    "quote": "What is not surrounded by uncertainty cannot be the truth.",
+    "author": "Richard Feynman"
+  },
+  {
+    "id": 5,
+    "quote": "One actor is no actor. Actors come in systems.",
+    "author": "Carl Hewitt"
+  },
+  {
+    "id": 6,
+    "quote": "This is the Unix philosophy: Write programs that do one thing and do it well. Write programs to work together.",
+    "author": "Doug McIlroy"
+  },
+  {
+    "id": 7,
+    "quote": "Cohision: the code that changes together, stays together.",
+    "author": "Unknown"
+  },
+  {
+    "id": 7,
+    "quote": "A structure is stable if cohesion is strong and coupling is low.",
+    "author": "Larry Constantine"
+  },
+  {
+    "id": 8,
+    "quote": "[ne of the hardest parts of computer science is naming things.",
+    "author": "Phil Karlton"
+  }
+]

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Domain Service is a concept in Domain Model that fulfills a domain-specific task. Domain Service is stateless and normally act like a orchestration component for entities or encapsulate business policies.">
+    <meta name="robots" content="index, archive">
+    <meta property="og:title" content="Enterprise Software Blog"/>
+    <meta property="og:locale" content="en_US"/>
+    <meta name="description" content="A place for discussing about software."/>
+    <meta property="og:description" content="A place for discussing about software."/>
+    <meta property="og:url" content="/"/>
+    <meta property="og:site_name" content="Enterprise Software Blog"/>
+    <meta name="twitter:card" content="summary"/>
+    <meta property="twitter:title" content="Enterprise Software Blog"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <title>Enterprise Software Blog  - Domain Service in Domain Driven Design</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-179743488-1');
+    </script>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-item">
+        <a href="/" class="Header-link f4 d-flex flex-items-center font-fugaz-one">
+            Enterprise Software Blog
+        </a>
+    </div>
+    <div class="Header-item Header-item--full">
+    </div>
+    <div class="Header-item mr-0">
+        <a href="/feed.xml" target="_blank">
+            <img src="/assets/images/rss-icon.png" alt="RSS">
+        </a>
+    </div>
+</header>
+<div class="container-xl clearfix">
+    <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
+        <div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
+             style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">Abbas Amiri</h3>
+        <h3 class="text-center">Software Engineer</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
+                        class="icon-github-circled"></i></a>
+            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
+                        class="icon-stackoverflow-1"></i></a>
+            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
+
+    </div>
+    <div class="col-12 col-xl-9 col-md-9 col-sm-12 col-lg-9 float-left">
+        <div class="Box m-2 color-shadow-medium text-justify">
+    <article class="Box-body">
+        <header>
+            <h2>Domain Service in Domain Driven Design</h2>
+            <p class="color-gray-5"><i class="icon-calendar-outlilne"></i> Tue Jan 04 2022</p>
+        </header>
+        <hr>
+        <section class="markdown-body">
+            <p><img src="/assets/images/article-image-26.jpg" alt="Photo by Maryline Waldy on Unsplash"></p>
+<p>Domain Service is a concept in Domain Model that fulfills a domain-specific task. Domain Service is stateless and normally act like a orchestration component for entities or encapsulate business policies. In this article I will describe Domain Service and how they can be implemented in C#.</p>
+<h2 id="concept" tabindex="-1">Concept <a class="direct-link" href="#concept" aria-hidden="true">#</a></h2>
+<blockquote>
+<p>Sometimes, it just isn’t a thing .</p>
+<p>– Eric Evans</p>
+</blockquote>
+<p>Sometimes there is an operation in the Domain Model that does not have any place to go. You can not conceptually find an Entity or a Value Object that the operation belongs to it. In this situation we need to build a place for the operation. This place is called Domain Service.</p>
+<p>Imagine that you have two Entities; User and Task and an operation: Assign a Task to a User. Where the operation goes?</p>
+<p>The first choice maybe putting the operation inside to one of those entities. As Eric Evans mentioned in his book: It is a common mistake because you gradually slipping toward procedural programming and the object loses its conceptual clarity and becomes hard to understand or refactor.</p>
+<p>Th second choice maybe putting the operation into an application service as a use-case. It is an another mistake because the business leaks into the application layer.</p>
+<p>The last choice is creating an object named <code>AssignmentService</code> and put the operation inside it which is a correct choice in DDD context.</p>
+<p>THe object is responsible to apply all operation related to the User and assignment.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">class</span> <span class="token class-name">AssignmentService</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddAssignmentToUser</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">,</span> <span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>Assignment<span class="token punctuation">></span></span> <span class="token function">GetUserAssignments</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">RemoveUserAssignment</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">,</span> <span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">User</span> <span class="token function">WhatUserHasAssignment</span><span class="token punctuation">(</span><span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>As you can see the object operations’, do something in infrastructure like saving data to the database or quering the database; so, it is an infrastructural component and should be an <code>interface</code> that the infrastructure implements it. In fact, Domain Services are always exposed as an interface to expose a set of cohesive operations in the form of a contract.</p>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">interface</span> <span class="token class-name">IAssignmentService</span> <span class="token punctuation">{</span></span>
+<span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddAssignmentToUser</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">,</span> <span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>Assignment<span class="token punctuation">></span></span> <span class="token function">GetUserAssignments</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">RemoveUserAssignment</span><span class="token punctuation">(</span><span class="token class-name">User</span> user<span class="token punctuation">,</span> <span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">User</span> <span class="token function">WhatUserHasAssignment</span><span class="token punctuation">(</span><span class="token class-name">Assignment</span> assignment<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
+<p>The benefit of Domain Service is to decouple the user from assignment and keep the bussiness inside the Domain Model.</p>
+<h2 id="chracteristics" tabindex="-1">Chracteristics <a class="direct-link" href="#chracteristics" aria-hidden="true">#</a></h2>
+<p>Domain Service has three chracteristics.</p>
+<blockquote>
+<p>A good SERVICE has three characteristics.</p>
+<ol>
+<li>The operation relates to a domain concept that is not a natural<br>
+part of an ENTITY or VALUE OBJECT.</li>
+<li>The interface is defined in terms of other elements of the domain<br>
+model.</li>
+<li>The operation is stateless.</li>
+</ol>
+<p>– Eric Evans</p>
+</blockquote>
+<p>Let’s go through these characteristics.</p>
+<p>The first one describes Domain Service as not natural part of an Entity or Value Object; so, what is natural part? It depends on how you see a Entity or Value Object in a Domain Model. They represent concepts in the business which have conceptual bounderies. Imagine a talk between you and domain experts. You asked them to describe a User. They replied that “A User is an individual in the system that may have assignments”. The “may have” is important in the context that asignments are not a natural part of a user.</p>
+<p>The second one describes Domain Service as an interface that other elements in the Domain Model need; in this way a Domain Service acts as a coordinator that bring the different elements into a harmonious or efficient relationship.</p>
+<p>The third one describes Domain Service as a stateless object. A stateless object does not hold any data. It just consisits of couple of methods.</p>
+<h2 id="source-of-confusion" tabindex="-1">Source of confusion <a class="direct-link" href="#source-of-confusion" aria-hidden="true">#</a></h2>
+<p>The term <em>Service</em> has different meaning in the different contexts.</p>
+<p>In the Service Oriented Architecture (SOA), service is a component that enables clients to interact with a complex business system.</p>
+<p>Application Service is a component that uses Domain Model to accomplish a specific task. Sometimes it is difficult to distinguish between Application and Domain Services. The key point is that application service should not involve in the business rules. Let’s consider the example that Eric Evans has mentioned in his book.</p>
+<blockquote>
+<p>A bank might have an application that sends an e-mail to a customer when an account balance falls below a specific threshold. The interface that encapsulates the e-mail system, and perhaps alternate means of notification, is a SERVICE in the infrastructure layer.</p>
+</blockquote>
+<p>In the example, the Application Service is responsible for ordering the notification and The Domain Service is responsible to determine if the account balance falls below a specific threshold or not. As you can see the Application Service does not involve in the business.</p>
+<h2 id="domain-service-as-a-contract" tabindex="-1">Domain service as a contract <a class="direct-link" href="#domain-service-as-a-contract" aria-hidden="true">#</a></h2>
+<p>Sometimes a concept in Domain Model can not be implemented purely in Domain Model; it needs some infrastructural capabilities. In other words, the concept is a infrastructural component. Domain Service act like contract between Domain Model and infrastructure. For instance, assigning a task to a user needs database to do its job. Inthis way the <code>IAssignmentService</code> acts like a contract.</p>
+<h2 id="domain-service-and-anemic-domain-model" tabindex="-1">Domain Service and Anemic Domain Model <a class="direct-link" href="#domain-service-and-anemic-domain-model" aria-hidden="true">#</a></h2>
+<p>Pushing too much logic into a Domain Service leads to have Anemic Domain Model.</p>
+<blockquote>
+<p>The basic symptom of an Anemic Domain Model is that at first blush it looks like the real thing. There are objects, many named after the nouns in the domain space, and these objects are connected with the rich relationships and structure that true domain models have. The catch comes when you look at the behavior, and you realize that there is hardly any behavior on these objects, making them little more than bags of getters and setters. Indeed often these models come with design rules that say that you are not to put any domain logic in the the domain objects. Instead there are a set of service objects which capture all the domain logic, carrying out all the computation and updating the model objects with the results. These services live on top of the domain model and use the domain model for data.</p>
+<p>– <a href="https://martinfowler.com/bliki/AnemicDomainModel.html">Martin Fowler</a></p>
+</blockquote>
+<h2 id="summary" tabindex="-1">Summary <a class="direct-link" href="#summary" aria-hidden="true">#</a></h2>
+<p>Domain Service fulfills a domain-specific task. It does not hold data and mostly is a infrastructural component. Domain Service, SOA service and Application Service have close defintion that is a point of confusion. It is important to be careful about pushing ligic into the Domain Service that cause having Anemic Domain Model. Domain Service can make the Domain Model clean and more understandable.</p>
+
+        </section>
+    </article>
+</div>
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <h3><i class="icon-comment"></i> Comments</h3>
+        <hr>
+        <div class="flash-messages">
+            <div class="flash">
+                <p>Join the discussion for this article on <a href="https://github.com/abbasamiri/abbasamiri.github.io/issues/7" target="_blank">this
+                        ticket</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ml-6 pl-3" id="comment-container"></div>
+    </div>
+</div>
+
+<script>
+    const GH_API_URL = 'https://api.github.com/repos/abbasamiri/abbasamiri.github.io/issues/7/comments';
+    let request = new XMLHttpRequest();
+    request.open('GET', GH_API_URL, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let response = JSON.parse(this.response);
+
+            for (let i = 0; i < response.length; i++) {
+                document.getElementById('comment-container').appendChild(createCommentEl(response[i]));
+            }
+        } else {
+            console.error(this);
+        }
+    };
+
+    function createCommentEl(response) {
+        let comment = document.createElement('div');
+        comment.classList.add('TimelineItem')
+        let date = new Date(response.created_at);
+        let commentText = '';
+        if (window.showdown) {
+            let converter = new showdown.Converter();
+            commentText = converter.makeHtml(response.body);
+        }
+        comment.innerHTML =
+            '<div class="TimelineItem-avatar">\n' +
+            '<img class="avatar" height="40" width="40" alt="@octocat"\n' +
+            'src="' + response.user.avatar_url + '" />\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-badge">\n' +
+            '<i class="icon-comment" style="margin-top: 6px;margin-left: 2px;"></i>\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-body">\n' +
+            '<div class="Box">\n' +
+            '<div class="Box-body">\n' +
+            '<a href="' + response.html_url + '" class="mr-1" target="_blank">' +
+            '<strong>' + response.user.login + '</strong> commented at ' + date.toLocaleString() +
+            '</a>\n' +
+            '<p>' + commentText + '</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n'
+        return comment;
+    }
+
+    request.send();
+</script>
+
+    </div>
+</div>
+<footer class="Box-footer text-center">
+    &copy; <span id="currentYear"></span> Abbas Amiri
+</footer>
+<script>
+    (function () {
+        document.getElementById('currentYear').innerText = (new Date()).getFullYear();
+    })();
+</script>
+</body>
+</html>
