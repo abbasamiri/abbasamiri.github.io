@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="A Domain is what an organization does to carry out its business. A Domain normally has some subdomains that work together to perform some tasks that run the business. The main goal of Domain Driven Design is to model the Domain in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly. Understanding the Domain leads to designing the Domain Model. The next step is to segregate the domain model into a concept that is called Bounded Context.">
     <meta name="robots" content="index, archive">
-    <meta property="og:title" content="Enterprise Software Blog"/>
-    <meta property="og:locale" content="en_US"/>
-    <meta name="description" content="A place for discussing about software."/>
-    <meta property="og:description" content="A place for discussing about software."/>
-    <meta property="og:url" content="/"/>
-    <meta property="og:site_name" content="Enterprise Software Blog"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta property="twitter:title" content="Enterprise Software Blog"/>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <meta property="og:title" content="Enterprise Software Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="A place for discussing about software.">
+    <meta property="og:description" content="A place for discussing about software.">
+    <meta property="og:url" content="/">
+    <meta property="og:site_name" content="Enterprise Software Blog">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Enterprise Software Blog">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
@@ -28,7 +27,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -36,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io">
     <link rel="stylesheet" href="/assets/css/site.css">
     <title>Enterprise Software Blog  - Bounded Context in Domain Driven Design</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
@@ -66,19 +65,16 @@
     <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
         <div class="Box m-2 color-shadow-medium">
     <div class="Box-body">
-        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
-             style="width: 150px; height: auto; display:block;margin:auto;">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri" style="width: 150px; height: auto; display:block;margin:auto;">
         <p></p>
         <h3 class="text-center">Abbas Amiri</h3>
         <h3 class="text-center">Software Engineer</h3>
         <p></p>
         <p class="text-center">
             <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
-            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
-                        class="icon-github-circled"></i></a>
-            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
-                        class="icon-stackoverflow-1"></i></a>
-            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+            <a rel="noreferrer" href="https://github.com/abbasamiri" title="Github" target="_blank"><i class="icon-github-circled"></i></a>
+            <a rel="noreferrer" href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i class="icon-stackoverflow-1"></i></a>
+            <a rel="noreferrer" href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
         </p>
     </div>
 </div>
@@ -129,18 +125,18 @@
             <p><img src="/assets/images/article-image-11.jpg" alt=""></p>
 <blockquote>
 <p>Bounded Context is a central pattern in Domain-Driven Design. It is the focus of DDD’s strategic design section which is all about dealing with large models and teams. DDD deals with large models by dividing them into different Bounded Contexts and being explicit about their interrelationships.</p>
-<p>– <a href="https://martinfowler.com/bliki/BoundedContext.html">Martin Fowler</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://martinfowler.com/bliki/BoundedContext.html">Martin Fowler</a></p>
 </blockquote>
 <p>A <em>Domain</em> is what an organization does to carry out its business. A <em>Domain</em> normally has some subdomains that work together to perform some tasks that run the business. The main goal of <em>Domain Driven Design</em> is to model the <em>Domain</em> in the way that it can be implemented by software. Every subdomain has specific functions that are different from functions in other subdomains. It is logical to think about those functions separately to understand them correctly.</p>
 <p>Understanding the <em>Domain</em> leads to designing the <em>Domain Model</em>. The next step is to segregate the <em>Domain Model</em> into a concept that is called <em>Bounded Context</em>.</p>
 <p><em>Bounded Context</em> is an area in the <em>Domain Model</em> that everything inside it is related to the area. <em>Bounded Context</em> is created semantically in <em>Problem Space</em> and transformed to the <em>Solution Space</em>.</p>
 <blockquote>
 <p><strong>Problem domain</strong> (or <strong>problem space</strong>) is an engineering term referring to all information that defines the problem and constrains the solution (the constraints being part of the problem). It includes the goals that the problem owner wishes to achieve, the context within which the problem exists, and all rules that define essential functions or other aspects of any solution product. It represents the environment in which a solution will have to operate, as well as the problem itself.</p>
-<p>– <a href="https://wiki.c2.com/?ProblemDomain">Problem Domain</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://wiki.c2.com/?ProblemDomain">Problem Domain</a></p>
 </blockquote>
 <blockquote>
 <p>The <strong>solution domain</strong> defines the abstract environment where the solution is developed.</p>
-<p>– <a href="https://wiki.c2.com/?SolutionDomain">Solution domain</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://wiki.c2.com/?SolutionDomain">Solution domain</a></p>
 </blockquote>
 <p>Inside the <em>Bounded Context</em> there is a language that developers and domain experts can understand, it is called <em>Ubiquitous Language</em>. Everything inside the <em>Bounded Context</em> should be named based on the language.</p>
 <p>There are two famous methods to help us to define <em>Bounded Context</em></p>
@@ -148,14 +144,14 @@
 <li>Event-Storming (I will describe this method in a dedicated article).</li>
 <li>Finding <em>Functional Cohesion</em>.</li>
 </ol>
-<p>let’s consider an example from Microsoft site: <a href="https://docs.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis">Using domain analysis to model microservices</a></p>
+<p>let’s consider an example from Microsoft site: <a rel="noreferrer" target="_blank" href="https://docs.microsoft.com/en-us/azure/architecture/microservices/model/domain-analysis">Using domain analysis to model microservices</a></p>
 <p><strong>Note:</strong> We will use <em>Functional Cohesion</em> to find out <em>Bounded Context</em>s in the example.</p>
 <p>The <em>Domain</em> is described below:</p>
 <blockquote>
 <p>Fabrikam, Inc. is starting a drone delivery service. The company manages a fleet of drone aircraft. Businesses register with the service, and users can request a drone to pick up goods for delivery. When a customer schedules a pickup, a backend system assigns a drone and notifies the user with an estimated delivery time. While the delivery is in progress, the customer can track the location of the drone, with a continuously updated ETA.</p>
 <p>This scenario involves a fairly complicated domain. Some of the business concerns include scheduling drones, tracking packages, managing user accounts, and storing and analyzing historical data. Moreover, Fabrikam wants to get to market quickly and then iterate quickly, adding new functionality and capabilities. The application needs to operate at cloud scale, with a high service level objective (SLO). Fabrikam also expects that different parts of the system will have very different requirements for data storage and querying. All of these considerations lead Fabrikam to choose a microservices architecture for the Drone Delivery application.</p>
 </blockquote>
-<p>Interesting idea! Right? I love to receive my package by a drone, like <em><a href="https://en.wikipedia.org/wiki/The_Fifth_Element">The Fifth Element</a></em> movie when Bruce Willis gets his lunch from a flying ship.</p>
+<p>Interesting idea! Right? I love to receive my package by a drone, like <em><a rel="noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/The_Fifth_Element">The Fifth Element</a></em> movie when Bruce Willis gets his lunch from a flying ship.</p>
 <p><img src="/assets/images/article-image-12.jpg" alt=""></p>
 <p>Let’s take a look at the domain diagram.</p>
 <p><img src="/assets/images/article-image-12.svg" alt="domain diagram"></p>
@@ -256,11 +252,11 @@
 </thead>
 <tbody>
 <tr>
-<td>Delivery <br />Package <br />Drone <br />Account <br />Confirmation <br />Notification <br />Tag</td>
-<td>Delivery <br />Package <br />Drone <br />Account</td>
-<td>Location <br />ETA <br />PackageWeight <br />PackageSize</td>
-<td>DroneStatus <br />DeliveryTracking</td>
-<td>Scheduler<br />Supervisor</td>
+<td>Delivery <br>Package <br>Drone <br>Account <br>Confirmation <br>Notification <br>Tag</td>
+<td>Delivery <br>Package <br>Drone <br>Account</td>
+<td>Location <br>ETA <br>PackageWeight <br>PackageSize</td>
+<td>DroneStatus <br>DeliveryTracking</td>
+<td>Scheduler<br>Supervisor</td>
 </tr>
 </tbody>
 </table>
@@ -280,7 +276,7 @@
         <hr>
         <div class="flash-messages">
             <div class="flash">
-                <p>Join the discussion for this article on <a href="https://github.com/abbasamiri/abbasamiri.github.io/issues/4" target="_blank">this
+                <p>Join the discussion for this article on <a rel="noreferrer" href="https://github.com/abbasamiri/abbasamiri.github.io/issues/4" target="_blank">this
                         ticket</a>.
                 </p>
             </div>
@@ -341,7 +337,7 @@
     </div>
 </div>
 <footer class="Box-footer text-center">
-    &copy; <span id="currentYear"></span> Abbas Amiri
+    © <span id="currentYear"></span> Abbas Amiri
 </footer>
 <script>
     (function () {

@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic. This article describes the Repository Design Pattern in the context of Domain Driven Design.">
     <meta name="robots" content="index, archive">
-    <meta property="og:title" content="Enterprise Software Blog"/>
-    <meta property="og:locale" content="en_US"/>
-    <meta name="description" content="A place for discussing about software."/>
-    <meta property="og:description" content="A place for discussing about software."/>
-    <meta property="og:url" content="/"/>
-    <meta property="og:site_name" content="Enterprise Software Blog"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta property="twitter:title" content="Enterprise Software Blog"/>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <meta property="og:title" content="Enterprise Software Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="A place for discussing about software.">
+    <meta property="og:description" content="A place for discussing about software.">
+    <meta property="og:url" content="/">
+    <meta property="og:site_name" content="Enterprise Software Blog">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Enterprise Software Blog">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
@@ -28,7 +27,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -36,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io">
     <link rel="stylesheet" href="/assets/css/site.css">
     <title>Enterprise Software Blog  - Repository in Domain Driven Design</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
@@ -66,19 +65,16 @@
     <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
         <div class="Box m-2 color-shadow-medium">
     <div class="Box-body">
-        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
-             style="width: 150px; height: auto; display:block;margin:auto;">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri" style="width: 150px; height: auto; display:block;margin:auto;">
         <p></p>
         <h3 class="text-center">Abbas Amiri</h3>
         <h3 class="text-center">Software Engineer</h3>
         <p></p>
         <p class="text-center">
             <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
-            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
-                        class="icon-github-circled"></i></a>
-            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
-                        class="icon-stackoverflow-1"></i></a>
-            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+            <a rel="noreferrer" href="https://github.com/abbasamiri" title="Github" target="_blank"><i class="icon-github-circled"></i></a>
+            <a rel="noreferrer" href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i class="icon-stackoverflow-1"></i></a>
+            <a rel="noreferrer" href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
         </p>
     </div>
 </div>
@@ -130,40 +126,40 @@
 <p>Enterprise applications often have complex data which need to persist. Data persistence has been a challenging issue in software production. Having an appropriate data persistent mechanism could be one of some factors which leads to having a successful software product. There are some design patterns related to data persistent, in this article I will try to describe some of them focusing on <em>Repository</em> one.</p>
 <p><em>Repository Design Pattern</em> mostly lives in the context of <em>Domain Driven Design</em> in collaboration with some architectural patterns like <em>Layered Architecture</em>, <em>Domain Models</em>, <em>Service Layer</em>, <em>Data Mapper</em>, <em>Unit of Work</em> which will be described briefly to have common understanding of these patterns.</p>
 <h4 id="domain-driven-design" tabindex="-1">Domain Driven Design <a class="direct-link" href="#domain-driven-design" aria-hidden="true">#</a></h4>
-<p>Domain Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. The term was coined by Eric Evans in his <a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">book</a> of the same title. <em>Context</em>, <em>Domain</em>, <em>Model</em>, <em>Ubiquitous Language</em> are basic concepts in DDD.</p>
+<p>Domain Driven Design (DDD) is an approach to developing software for complex needs by deeply connecting the implementation to an evolving model of the core business concepts. The term was coined by Eric Evans in his <a rel="noreferrer" target="_blank" href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">book</a> of the same title. <em>Context</em>, <em>Domain</em>, <em>Model</em>, <em>Ubiquitous Language</em> are basic concepts in DDD.</p>
 <h4 id="layered-architecture" tabindex="-1">Layered Architecture <a class="direct-link" href="#layered-architecture" aria-hidden="true">#</a></h4>
 <p>An application has some components that perform specific tasks. <em>Layered Architecture</em> organizes these components in a level that components with specific concern are in the same layer. For instance, the presentation layer consists of all components which build the user-interface, the persistent layer is a collection of components that perform data persistence and so on. Layers communicate with each other in a certain way, the structure of architecture defines the direction of communication between layers.</p>
 <h4 id="domain-models" tabindex="-1">Domain Models <a class="direct-link" href="#domain-models" aria-hidden="true">#</a></h4>
-<p>Martin Fowler in his book <a href="https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420/">Patterns of Enterprise Application Architecture</a> describes three patterns to organizing domain logic: <em>Transaction Script</em>, <em>Domain Model</em> and <em>Table Module</em>. The Domain Model is what we are interested in, which is classes for nouns in the domain. For instance, <em>Customer</em> is an <em>Entity</em> in a domain model in an ordering system. Domain Model should handle all data and business related to its concept.</p>
+<p>Martin Fowler in his book <a rel="noreferrer" target="_blank" href="https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420/">Patterns of Enterprise Application Architecture</a> describes three patterns to organizing domain logic: <em>Transaction Script</em>, <em>Domain Model</em> and <em>Table Module</em>. The Domain Model is what we are interested in, which is classes for nouns in the domain. For instance, <em>Customer</em> is an <em>Entity</em> in a domain model in an ordering system. Domain Model should handle all data and business related to its concept.</p>
 <h4 id="service-layer" tabindex="-1">Service Layer <a class="direct-link" href="#service-layer" aria-hidden="true">#</a></h4>
 <blockquote>
 <p>Defines an application’s boundary with a layer of services that establishes a set of available operations and coordinates the application’s response in each operation.</p>
-<p>— <cite><a href="https://martinfowler.com/eaaCatalog/serviceLayer.html">Service Layer</a></cite></p>
+<p>— <cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/eaaCatalog/serviceLayer.html">Service Layer</a></cite></p>
 </blockquote>
 <p><img src="/assets/images/article-image-3.gif" alt="Service Layer"></p>
 <p>Service Layer is where the application’s operations take place. This layer encapsulates application business logic, controlling transactions, workflow logic and every activity that is related to the application so it could be called <em>Application Service Layer</em>. The layer exploits repositories to perform its job.</p>
 <h4 id="unit-of-work" tabindex="-1">Unit of Work <a class="direct-link" href="#unit-of-work" aria-hidden="true">#</a></h4>
 <blockquote>
 <p>Maintains a list of objects affected by a business transaction and coordinates the writing out of changes and the resolution of concurrency problems.</p>
-<p>— <cite><a href="https://martinfowler.com/eaaCatalog/unitOfWork.html">Unit of Work</a></cite></p>
+<p>— <cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/eaaCatalog/unitOfWork.html">Unit of Work</a></cite></p>
 </blockquote>
 <p>The main purpose of <code>Unit of Work</code> is to manage transactions in a way that repositories are free from this concern. Repositories can be part of a transaction, but being ignorant about it.</p>
 <h4 id="repository" tabindex="-1">Repository <a class="direct-link" href="#repository" aria-hidden="true">#</a></h4>
 <blockquote>
 <p>Mediates between the domain and data mapping layers using a collection-like interface for accessing domain objects.</p>
-<p>— <cite><a href="https://martinfowler.com/eaaCatalog/repository.html">Repository</a></cite></p>
+<p>— <cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/eaaCatalog/repository.html">Repository</a></cite></p>
 </blockquote>
 <p>Repositories are components that encapsulate the logic required to access data sources. They decouple data access logic and technology from domain logic.</p>
 <p>Normally every <em>Aggregate Domain Model</em> has a repository. Martin Fowler describes <em>Aggregate</em> or <em>Aggregate root</em> as below:</p>
 <blockquote>
 <p>Aggregate is a pattern in Domain-Driven Design. A DDD aggregate is a cluster of domain objects that can be treated as a single unit.</p>
-<p><cite><a href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD_Aggregate</a></cite></p>
+<p><cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/bliki/DDD_Aggregate.html">DDD_Aggregate</a></cite></p>
 </blockquote>
 <p>This is important that every aggregate in the domain model should have one repository which maintains transnational consistency between all the objects within the aggregate.</p>
 <p>I tend to think about repositories - as Martin Fowler describes it - as a mediator between domain and data mapper, but what is <em>Data Mapper</em>?</p>
 <blockquote>
 <p>A layer of Mappers that moves data between objects and a database while keeping them independent of each other and the mapper itself.</p>
-<p><cite><a href="https://martinfowler.com/eaaCatalog/dataMapper.html">Data Mapper</a></cite></p>
+<p><cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/eaaCatalog/dataMapper.html">Data Mapper</a></cite></p>
 </blockquote>
 <p>Inside the repository, data mapper performs its job to retrieve and persist data to data source(s).</p>
 <p>Data sources are mostly somewhere outside of your application like SqlServer, Oracle, MongoDB and so on, they may have different mechanisms to structure data. Applications need a mechanism to communicate with these external data sources, this mechanism is called <em>Data Mapper</em>. It is like a bridge between the application and the data source. Objects and data sources have different mechanisms for structuring data. For instance, Relational databases do not support inheritance or collections. Data mapper is responsible for transferring data between objects and data sources in a way that these concepts are ignorant about each other.</p>
@@ -174,10 +170,10 @@
 <h4 id="repository-design" tabindex="-1">Repository design <a class="direct-link" href="#repository-design" aria-hidden="true">#</a></h4>
 <p>Repositories should be defined based on its consumer needs which is based on use-cases. Having general and unified methods in a repository is not a good idea because not all aggregates have the same needs, it is also possible that general repositories have leaky abstraction. It is always tempting to design repositories for the sake of code-reuse, but this kind of code-reuse pollutes repositories with useless methods that throws the<br>
 <code>NotImplementedException</code>. For instance, imagine that we have a General Repository - in C# -like this:</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRepository<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">,</span> TId<span class="token punctuation">></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">IRepository<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">,</span> TId<span class="token punctuation">&gt;</span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
-<span class="highlight-line">    <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">></span></span> <span class="token function">FindAllMatching</span><span class="token punctuation">(</span><span class="token class-name">Expression<span class="token punctuation">&lt;</span>Func<span class="token punctuation">&lt;</span>T<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">></span><span class="token punctuation">></span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">    <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">></span></span> <span class="token function">FindAllMatching</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">&gt;</span></span> <span class="token function">FindAllMatching</span><span class="token punctuation">(</span><span class="token class-name">Expression<span class="token punctuation">&lt;</span>Func<span class="token punctuation">&lt;</span>T<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IEnumerable<span class="token punctuation">&lt;</span>TAggregate<span class="token punctuation">&gt;</span></span> <span class="token function">FindAllMatching</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token return-type class-name">TAggregate</span> <span class="token function">FindBy</span><span class="token punctuation">(</span><span class="token class-name">TId</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Add</span><span class="token punctuation">(</span><span class="token class-name">TAggregate</span> aggregate<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Remove</span><span class="token punctuation">(</span><span class="token class-name">TAggregate</span> aggregate<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
@@ -188,7 +184,7 @@
 <p>Robert C Martin said:</p>
 <blockquote>
 <p>The biggest problem with ORM’s is that they don’t really map O to R. Tables <em>are not</em> objects. They never were; and never will be.</p>
-<p><cite><a href="https://twitter.com/unclebobmartin/status/384682249301811200?lang=en">Twitter</a></cite></p>
+<p><cite><a rel="noreferrer" target="_blank" href="https://twitter.com/unclebobmartin/status/384682249301811200?lang=en">Twitter</a></cite></p>
 </blockquote>
 <p>The relations between domain models - mostly - is different from relations between database objects. The main purpose of domain models is supporting use-cases not the structure of database objects.</p>
 <p>If you are using <em>Domain Driven Design (DDD)</em> in your project, you meant to use Repository. It makes you follow principle and have clean code, replacing Repository with ORM should be avoided.</p>
@@ -199,14 +195,14 @@ It is something that domain experts can understand for the sake of <em>Ubiquitou
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ICustomerRepository</span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token return-type class-name">Customer</span> <span class="token function">GetById</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span> <span class="token function">GetAll</span><span class="token punctuation">(</span><span class="token class-name">Expression<span class="token punctuation">&lt;</span>Func<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">></span><span class="token punctuation">></span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span> <span class="token function">GetAll</span><span class="token punctuation">(</span><span class="token class-name">Expression<span class="token punctuation">&lt;</span>Func<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">,</span> <span class="token keyword">bool</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> query<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">Insert</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ICustomerRepository</span><span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">IRepository</span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token return-type class-name">Customer</span> <span class="token function">FindById</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">int</span></span> id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span> <span class="token function">FindByLastName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span> <span class="token function">FindByGender</span><span class="token punctuation">(</span><span class="token class-name">Gernder</span> gender<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span> <span class="token function">FindByLastName</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">string</span></span> lastName<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span> <span class="token function">FindByGender</span><span class="token punctuation">(</span><span class="token class-name">Gernder</span> gender<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">AddNewCustomer</span><span class="token punctuation">(</span><span class="token class-name">Customer</span> customer<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <p>The <code>IRepository</code> is a <em>Marker Interface</em> that provides run-time type information about object.</p>
@@ -214,48 +210,48 @@ It is something that domain experts can understand for the sake of <em>Ubiquitou
 <blockquote>
 <p>The central idea of Specification is to separate the statement of how to match a candidate, from the<br>
 candidate object that it is matched against. As well as its usefulness in selection.</p>
-<p><cite><a href="https://martinfowler.com/apsupp/spec.pdf">Specification Pattern</a></cite></p>
+<p><cite><a rel="noreferrer" target="_blank" href="https://martinfowler.com/apsupp/spec.pdf">Specification Pattern</a></cite></p>
 </blockquote>
 <p>Imagine that you have a use-case that needs to select a subset of objects based on some criteria. If you want to be specific in a repository - based on  meaningful contract - the repository’s method will be too complicated. In this situation <em>Specification Pattern</em> can be helpful, it decouples the design of requirements and allows clear and declarative system definitions.</p>
 <p>The Specification implementation in C# could be based on <code>interface</code> below:</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"> <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"> <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span>
 <span class="highlight-line"> <span class="token punctuation">{</span></span>
 <span class="highlight-line">     <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">IsSatisfiedBy</span><span class="token punctuation">(</span><span class="token class-name">T</span> candidate<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token function">And</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token function">AndNot</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token function">Or</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token function">OrNot</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
-<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token function">Not</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token function">And</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token function">AndNot</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token function">Or</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token function">OrNot</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> other<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">     <span class="token return-type class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token function">Not</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line"> <span class="token punctuation">}</span></span></code></pre>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Specification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Specification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>T<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ICustomerRepository</span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span> <span class="token function">Find</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span> specification<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">IReadOnlyList<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span> <span class="token function">Find</span><span class="token punctuation">(</span><span class="token class-name">ISpecification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span> specification<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
 <span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">CustomerRepository</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ICustomerRepository</span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <p>As you can see the main pillar of the pattern is <code>bool IsSatisfiedBy(T candidate)</code> that applies the condition to the collection. The rest methods are for composition.</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByCardTypeSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByCardTypeSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByEmailSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByEmailSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByGenderSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByGenderSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByIdentitySpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByIdentitySpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByLastNameSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">></span></span></span> <span class="token punctuation">{</span></span>
+<span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FineByLastNameSpecification</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Specification<span class="token punctuation">&lt;</span>Customer<span class="token punctuation">&gt;</span></span></span> <span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token class-name"><span class="token keyword">var</span></span> emailSpec <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">FineByEmailSpecification</span><span class="token punctuation">(</span><span class="token string">"person@example.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
@@ -280,7 +276,7 @@ candidate object that it is matched against. As well as its usefulness in select
         <hr>
         <div class="flash-messages">
             <div class="flash">
-                <p>Join the discussion for this article on <a href="https://github.com/abbasamiri/abbasamiri.github.io/issues/1" target="_blank">this
+                <p>Join the discussion for this article on <a rel="noreferrer" href="https://github.com/abbasamiri/abbasamiri.github.io/issues/1" target="_blank">this
                         ticket</a>.
                 </p>
             </div>
@@ -341,7 +337,7 @@ candidate object that it is matched against. As well as its usefulness in select
     </div>
 </div>
 <footer class="Box-footer text-center">
-    &copy; <span id="currentYear"></span> Abbas Amiri
+    © <span id="currentYear"></span> Abbas Amiri
 </footer>
 <script>
     (function () {

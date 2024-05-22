@@ -2,23 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article, I will describe the Entity&#39;s characteristics and how they can be implemented in C#">
+    <meta name="description" content="In Domain Driven Design, Entity is the concept that its individuality is important. An Entity is a unique thing that its state can be changed. These characteristics make Entity an important building block of Domain Driven Design. In this article, I will describe the Entity's characteristics and how they can be implemented in C#">
     <meta name="robots" content="index, archive">
-    <meta property="og:title" content="Enterprise Software Blog"/>
-    <meta property="og:locale" content="en_US"/>
-    <meta name="description" content="A place for discussing about software."/>
-    <meta property="og:description" content="A place for discussing about software."/>
-    <meta property="og:url" content="/"/>
-    <meta property="og:site_name" content="Enterprise Software Blog"/>
-    <meta name="twitter:card" content="summary"/>
-    <meta property="twitter:title" content="Enterprise Software Blog"/>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico"/>
+    <meta property="og:title" content="Enterprise Software Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="A place for discussing about software.">
+    <meta property="og:description" content="A place for discussing about software.">
+    <meta property="og:url" content="/">
+    <meta property="og:site_name" content="Enterprise Software Blog">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Enterprise Software Blog">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
     <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
@@ -28,7 +27,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -36,7 +35,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io"/>
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io">
     <link rel="stylesheet" href="/assets/css/site.css">
     <title>Enterprise Software Blog  - Entity in Domain Driven Design</title>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
@@ -66,19 +65,16 @@
     <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
         <div class="Box m-2 color-shadow-medium">
     <div class="Box-body">
-        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri"
-             style="width: 150px; height: auto; display:block;margin:auto;">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri" style="width: 150px; height: auto; display:block;margin:auto;">
         <p></p>
         <h3 class="text-center">Abbas Amiri</h3>
         <h3 class="text-center">Software Engineer</h3>
         <p></p>
         <p class="text-center">
             <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
-            <a href="https://github.com/abbasamiri" title="Github" target="_blank"><i
-                        class="icon-github-circled"></i></a>
-            <a href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i
-                        class="icon-stackoverflow-1"></i></a>
-            <a href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+            <a rel="noreferrer" href="https://github.com/abbasamiri" title="Github" target="_blank"><i class="icon-github-circled"></i></a>
+            <a rel="noreferrer" href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i class="icon-stackoverflow-1"></i></a>
+            <a rel="noreferrer" href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
         </p>
     </div>
 </div>
@@ -183,9 +179,9 @@
 <h4 id="3---application-provided-identity" tabindex="-1">3 - Application provided Identity <a class="direct-link" href="#3---application-provided-identity" aria-hidden="true">#</a></h4>
 <p>Sometimes the application provides the <em>Identity</em> like <em>Incremental Numeric Counters</em> or <em>GUID</em>.</p>
 <h5 id="3.1---incremental-numeric-counters" tabindex="-1">3.1 - Incremental Numeric Counters <a class="direct-link" href="#3.1---incremental-numeric-counters" aria-hidden="true">#</a></h5>
-<p><em>Incremental Numeric Counter</em> is a global component over the application whose responsibility is to generate a number per request, this number is incremental. In this scenario we should consider that the application would be distributed, so every node of the application generates the number individually which causes the non-unique <em>Identity</em> on the whole. To prevent the problem the last number should be saved somewhere safe and all nodes of the application used this number to generate a new one and replace the old number with a new one. It would be a complicated scenario because the component falls into <a href="https://en.wikipedia.org/wiki/Race_condition"><em>race condition</em></a>.</p>
+<p><em>Incremental Numeric Counter</em> is a global component over the application whose responsibility is to generate a number per request, this number is incremental. In this scenario we should consider that the application would be distributed, so every node of the application generates the number individually which causes the non-unique <em>Identity</em> on the whole. To prevent the problem the last number should be saved somewhere safe and all nodes of the application used this number to generate a new one and replace the old number with a new one. It would be a complicated scenario because the component falls into <a rel="noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Race_condition"><em>race condition</em></a>.</p>
 <h5 id="3.2---guid" tabindex="-1">3.2 - GUID <a class="direct-link" href="#3.2---guid" aria-hidden="true">#</a></h5>
-<p><a href="https://en.wikipedia.org/wiki/Universally_unique_identifier"><em>GUID</em></a> is an ideal solution for <em>Application provided Identity</em>, there is no <em>race condition</em> and the uniqueness of the <em>Identity</em> is always guaranteed.</p>
+<p><a rel="noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Universally_unique_identifier"><em>GUID</em></a> is an ideal solution for <em>Application provided Identity</em>, there is no <em>race condition</em> and the uniqueness of the <em>Identity</em> is always guaranteed.</p>
 <h4 id="4---entity-provided-identity" tabindex="-1">4 - Entity provided Identity <a class="direct-link" href="#4---entity-provided-identity" aria-hidden="true">#</a></h4>
 <p>Sometimes the <em>Entity</em> itself provides the <em>Identity</em> by joining attributes that are never changed and the combination is unique. For instance, a location in the globe has <em>Latitude</em> and <em>Longitude</em> that are never changed and the combination is unique, joining those two attributes can be an ideal <em>Identity</em>.</p>
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Location</span></span>
@@ -196,7 +192,7 @@
 <span class="highlight-line">        Longitude <span class="token operator">=</span> longitude<span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Id <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Latitude</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Longitude</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Id <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Latitude</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Longitude</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Latitude <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Longitude <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token range operator">..</span></span>
@@ -204,9 +200,9 @@
 <h4 id="5---database-provided-identity" tabindex="-1">5 - Database provided Identity <a class="direct-link" href="#5---database-provided-identity" aria-hidden="true">#</a></h4>
 <p>Sometimes developers prefer that the database generates the <em>Identity</em> for an <em>Entity</em>. It mostly happens when an <em>Entity</em> is inserted into a table and an auto-generated field generates a value that is unique inside the table, it could be easy to implement, but the <em>Identity</em> generation postpones to when the <em>Entity</em> is persisted. If the timing of <em>Identity</em> generation matters, this method should be considered carefully. Imagine that you create a new <em>Entity</em> before it persisted, the <em>Entity</em> does not exist, you cannot do anything with it, for instance, you cannot have more than one entity into a collection because they are not distinguishable or you cannot use <em>Domain Events</em> because the entity has not any <em>Identity</em>. These considerations may completely change your domain model’s design.</p>
 <p>In this method, we should distinguish between <em>Natural Primary Key</em> and <em>Surrogate Primary Key</em>. A <em>Natural Primary Key</em> is a column or set of columns that already exist in the table (e.g. they are attributes of the entity within the data model) and uniquely identify a record in the table. . A <em>Surrogate Primary Key</em> is a system-generated (could be GUID, sequence, etc.) value with no business meaning that is used to uniquely identify a record in a table.</p>
-<p>For more information about <em>Natural Primary Key</em> and <em>Surrogate Primary Key</em> take a look at <a href="https://www.mssqltips.com/sqlservertip/5431/surrogate-key-vs-natural-key-differences-and-when-to-use-in-sql-server/">Surrogate Key vs Natural Key Differences and When to Use in SQL Server</a>.</p>
+<p>For more information about <em>Natural Primary Key</em> and <em>Surrogate Primary Key</em> take a look at <a rel="noreferrer" target="_blank" href="https://www.mssqltips.com/sqlservertip/5431/surrogate-key-vs-natural-key-differences-and-when-to-use-in-sql-server/">Surrogate Key vs Natural Key Differences and When to Use in SQL Server</a>.</p>
 <h3 id="value-object-as-identity-type" tabindex="-1">Value object as Identity type <a class="direct-link" href="#value-object-as-identity-type" aria-hidden="true">#</a></h3>
-<p>The nature of <a href="https://abbasamiri.github.io/2021/03/21/value_object_in_domain_driven_design.html"><em>Value objects</em></a> makes them ideal <em>Identity</em> type, its Immutability is the most important aspect of <em>Identity</em>.</p>
+<p>The nature of <a rel="noreferrer" target="_blank" href="https://abbasamiri.github.io/2021/03/21/value_object_in_domain_driven_design.html"><em>Value objects</em></a> makes them ideal <em>Identity</em> type, its Immutability is the most important aspect of <em>Identity</em>.</p>
 <p>Consider the <code>Location</code> <em>Entity</em>. We can push the <em>Identity</em> type into the <code>GeoLocation</code> <em>Value Object</em>.</p>
 <pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">GeoLocation</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">ValueObject</span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
@@ -216,12 +212,12 @@
 <span class="highlight-line">        Longitude <span class="token operator">=</span> longitude<span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Latitude</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Longitude</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> <span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token interpolation-string"><span class="token string">$"</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Latitude</span><span class="token punctuation">}</span></span><span class="token string">-</span><span class="token interpolation"><span class="token punctuation">{</span><span class="token expression language-csharp">Longitude</span><span class="token punctuation">}</span></span><span class="token string">"</span></span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Latitude <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">double</span></span> Longitude <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Location</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>GeoLocation<span class="token punctuation">></span></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Location</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>GeoLocation<span class="token punctuation">&gt;</span></span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token function">GeoLocation</span><span class="token punctuation">(</span><span class="token class-name">GeoLocation</span> id<span class="token punctuation">)</span></span>
 <span class="highlight-line">    <span class="token punctuation">{</span></span>
@@ -229,7 +225,7 @@
 <span class="highlight-line">        Longitude <span class="token operator">=</span> longitude<span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">GeoLocation</span> Id <span class="token operator">=></span> id<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">GeoLocation</span> Id <span class="token operator">=&gt;</span> id<span class="token punctuation">.</span><span class="token function">ToString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Country <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Province <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> City <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
@@ -253,12 +249,12 @@
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> Currency <span class="token punctuation">{</span><span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <p><code>Money</code> is a <em>Value Object</em> which describes the <code>Price</code> type.</p>
-<p>Using <em>Value Objects</em> in a descriptive way prevents <a href="https://wiki.c2.com/?PrimitiveObsession">Primitive Obsession</a> code smell (a code smell is a hint that something has gone wrong somewhere in your code). <em>Primitive Obsession</em> is using primitive data types to represent domain ideas.</p>
+<p>Using <em>Value Objects</em> in a descriptive way prevents <a rel="noreferrer" target="_blank" href="https://wiki.c2.com/?PrimitiveObsession">Primitive Obsession</a> code smell (a code smell is a hint that something has gone wrong somewhere in your code). <em>Primitive Obsession</em> is using primitive data types to represent domain ideas.</p>
 <p>Pushing behavior into <em>Value Objects</em> makes an <em>Entity</em> focused and more understandable.</p>
 <h2 id="anemic-domain-model" tabindex="-1">Anemic Domain Model <a class="direct-link" href="#anemic-domain-model" aria-hidden="true">#</a></h2>
 <blockquote>
 <p>The basic symptom of an Anemic Domain Model is that at first blush it looks like the real thing. There are objects, many named after the nouns in the domain space, and these objects are connected with the rich relationships and structure that true domain models have. The catch comes when you look at the behavior, and you realize that there is hardly any behavior on these objects, making them little more than bags of getters and setters. Indeed often these models come with design rules that say that you are not to put any domain logic in the the domain objects. Instead there are a set of service objects which capture all the domain logic, carrying out all the computation and updating the model objects with the results. These services live on top of the domain model and use the domain model for data.</p>
-<p>– <a href="https://www.martinfowler.com/bliki/AnemicDomainModel.html">AnemicDomainModel</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://www.martinfowler.com/bliki/AnemicDomainModel.html">AnemicDomainModel</a></p>
 </blockquote>
 <p><em>Entities</em> suffer from <em>AnemicDomainModel</em> if the designer thinks about an <em>Entity</em> as a bunch of data. In this way, there are no or a few methods inside the object to change the <em>Entity</em>’s state. This kind of mindset comes from <em>Database Design</em> in which everything is data and an application or a stored procedure is responsible for CRUD operations.</p>
 <p><em>Object oriented design</em> needs a different mentality, the designer should think about the behaviors of an object and define attributes to support the behaviors. One method that helps a designer to reach a certain level of this mentality is defining the attribute’s setter of an object as <code>private</code> then writing methods to change the state based on domain rules. Let’s explain the method with code.</p>
@@ -301,16 +297,16 @@
 <span class="highlight-line">    <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <p>Of course, every person has the <code>MarriageStatus</code> and <code>EyesColor</code>, but the Banking system does not need this information, putting these behaviors inside the entity is useless. We should be aware that use-case is king, <em>Domain Model</em> should serve the use-cases.</p>
-<p>In this way, we should remember the <em><a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">You aren’t gonna need it</a></em> principle.</p>
+<p>In this way, we should remember the <em><a rel="noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">You aren’t gonna need it</a></em> principle.</p>
 <h2 id="entity-construction" tabindex="-1">Entity construction <a class="direct-link" href="#entity-construction" aria-hidden="true">#</a></h2>
-<p>Every <em>Entity</em> should have a method or methods to initialize an <em>Entity</em> with the given data. Normally the Application Layer constructs the <em>Entity</em> to serve a use-case. The construction can be implemented with a class constructor or <a href="https://en.wikipedia.org/wiki/Factory_method_pattern#:~:text=In%20class%2Dbased%20programming%2C%20the,object%20that%20will%20be%20created.">Factory method</a>s.</p>
+<p>Every <em>Entity</em> should have a method or methods to initialize an <em>Entity</em> with the given data. Normally the Application Layer constructs the <em>Entity</em> to serve a use-case. The construction can be implemented with a class constructor or <a rel="noreferrer" target="_blank" href="https://en.wikipedia.org/wiki/Factory_method_pattern#:~:text=In%20class%2Dbased%20programming%2C%20the,object%20that%20will%20be%20created.">Factory method</a>s.</p>
 <p>The method you choose to construct an <em>Entity</em> has two main responsibilities:</p>
 <ol>
 <li>Initialize the Entity’s state</li>
 <li>Validating initial values and invariants.</li>
 </ol>
 <p>Let’s consider the example below:</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">></span></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">&gt;</span></span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> LastName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">string</span></span> FirstName <span class="token punctuation">{</span><span class="token keyword">get</span><span class="token punctuation">;</span><span class="token punctuation">}</span></span>
@@ -331,7 +327,7 @@
 <span class="highlight-line">	    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DomainException</span><span class="token punctuation">(</span><span class="token string">"The LastName can not be null or empty."</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">        <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span>Lenth <span class="token operator">></span> <span class="token number">30</span><span class="token punctuation">)</span> </span>
+<span class="highlight-line">        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">.</span>Lenth <span class="token operator">&gt;</span> <span class="token number">30</span><span class="token punctuation">)</span> </span>
 <span class="highlight-line">	<span class="token punctuation">{</span></span>
 <span class="highlight-line">            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DomainException</span><span class="token punctuation">(</span><span class="token string">"The LastName length can not be more than 30 characters."</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">        <span class="token punctuation">}</span></span>
@@ -392,7 +388,7 @@
 <h3 id="memento-pattern" tabindex="-1">Memento Pattern <a class="direct-link" href="#memento-pattern" aria-hidden="true">#</a></h3>
 <blockquote>
 <p>Without violating encapsulation, capture and externalize an object’s internal state so that the object can be restored to this state later.</p>
-<p>– <a href="https://www.dofactory.com/net/memento-design-pattern">Memento</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://www.dofactory.com/net/memento-design-pattern">Memento</a></p>
 </blockquote>
 <p>This is interesting. This pattern helps us to avoid setters and getters which indirectly avoid <em>AnemicDomainModel</em>, but take a look at its class diagram.</p>
 <p><img src="/assets/images/article-image-9.gif" alt="Memento"></p>
@@ -400,7 +396,7 @@
 <h3 id="state-pattern" tabindex="-1">State Pattern <a class="direct-link" href="#state-pattern" aria-hidden="true">#</a></h3>
 <blockquote>
 <p>Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.</p>
-<p>– <a href="https://www.dofactory.com/net/state-design-pattern">State</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://www.dofactory.com/net/state-design-pattern">State</a></p>
 </blockquote>
 <p>That is interesting too. <em>State</em> pattern allows us to control an entity’s life cycle. In the lifetime of an <em>Entity</em>, its state changes and the <em>State</em> pattern helps us to manage it.</p>
 <p>Let’s take a look at its class diagram.</p>
@@ -410,11 +406,11 @@
 <h2 id="side-effect-free-behavior" tabindex="-1">Side-Effect-Free Behavior <a class="direct-link" href="#side-effect-free-behavior" aria-hidden="true">#</a></h2>
 <blockquote>
 <p>A method of an object can be designed as a <em>Side-Effect-Free Function</em>.  A <em>function</em> is an operation of an object that produces output but without modifying its own state. Since no modification occurs when executing a specific operation, that operation is said to be side-effect free.</p>
-<p>– <a href="https://www.oreilly.com/library/view/implementing-domain-driven-design/9780133039900/ch06lev2sec6.html">Side-Effect-Free Behavior</a></p>
+<p>– <a rel="noreferrer" target="_blank" href="https://www.oreilly.com/library/view/implementing-domain-driven-design/9780133039900/ch06lev2sec6.html">Side-Effect-Free Behavior</a></p>
 </blockquote>
 <p>Inside an entity, operations can be categorized in <em>Command</em> and <em>Query</em>. Commands are operations that change the internal state of an entity and queries are operations that do some calculations and return the result without changing the internal state of the entity. Joining these two operations could be problematic in some situations. In this way, the concept of <em>Side-Effect-Free</em> comes into <em>DDD</em>.</p>
 <p>Consider that you have the <em>Entity</em> below:</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">></span></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">&gt;</span></span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">  <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"></span>
@@ -425,7 +421,7 @@
 <span class="highlight-line"></span>
 <span class="highlight-line">  <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">decimal</span></span> <span class="token function">GetSalary</span><span class="token punctuation">(</span><span class="token punctuation">)</span> </span>
 <span class="highlight-line">  <span class="token punctuation">{</span></span>
-<span class="highlight-line">      <span class="token keyword">if</span> <span class="token punctuation">(</span>Salary <span class="token operator">></span> MaximumSalary<span class="token punctuation">)</span> </span>
+<span class="highlight-line">      <span class="token keyword">if</span> <span class="token punctuation">(</span>Salary <span class="token operator">&gt;</span> MaximumSalary<span class="token punctuation">)</span> </span>
 <span class="highlight-line">      <span class="token punctuation">{</span></span>
 <span class="highlight-line">          Salary <span class="token operator">=</span> MaximumSalary</span>
 <span class="highlight-line">      <span class="token punctuation">}</span></span>
@@ -433,13 +429,13 @@
 <span class="highlight-line">  <span class="token punctuation">}</span></span>
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <p>a better version could be something like this:</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">></span></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">:</span> <span class="token type-list"><span class="token class-name">Entity<span class="token punctuation">&lt;</span>Guid<span class="token punctuation">&gt;</span></span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">  <span class="token range operator">..</span><span class="token punctuation">.</span></span>
 <span class="highlight-line"></span>
 <span class="highlight-line">  <span class="token keyword">public</span> <span class="token return-type class-name"><span class="token keyword">void</span></span> <span class="token function">SetSalary</span><span class="token punctuation">(</span><span class="token class-name"><span class="token keyword">decimal</span></span> salary<span class="token punctuation">)</span> </span>
 <span class="highlight-line">  <span class="token punctuation">{</span></span>
-<span class="highlight-line">      <span class="token keyword">if</span> <span class="token punctuation">(</span>Salary <span class="token operator">></span> MaximumSalary<span class="token punctuation">)</span> </span>
+<span class="highlight-line">      <span class="token keyword">if</span> <span class="token punctuation">(</span>Salary <span class="token operator">&gt;</span> MaximumSalary<span class="token punctuation">)</span> </span>
 <span class="highlight-line">      <span class="token punctuation">{</span></span>
 <span class="highlight-line">          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token constructor-invocation class-name">DomainException</span><span class="token punctuation">(</span><span class="token string">"The salary is greater than maximum salary."</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">      <span class="token punctuation">}</span></span>
@@ -453,7 +449,7 @@
 <span class="highlight-line"><span class="token punctuation">}</span></span></code></pre>
 <h2 id="entity-base-class" tabindex="-1">Entity base class <a class="direct-link" href="#entity-base-class" aria-hidden="true">#</a></h2>
 <p>It would be a good idea to inherit entities from an abstract base class. As you can see in the class below, some common characteristics of <em>Entity</em> are provided which makes a nice uniformity in a <em>Domain Model</em>.</p>
-<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span></span>
+<pre class="language-csharp"><code class="language-csharp"><span class="highlight-line"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span></span>
 <span class="highlight-line"><span class="token punctuation">{</span></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token return-type class-name">TIdentity</span> Id <span class="token punctuation">{</span> <span class="token keyword">get</span><span class="token punctuation">;</span> <span class="token keyword">protected</span> <span class="token keyword">set</span><span class="token punctuation">;</span> <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
@@ -462,22 +458,22 @@
 <span class="highlight-line">        <span class="token keyword">return</span> Id<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">(</span><span class="token type-expression class-name">TIdentity</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">protected</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span> other<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token keyword">protected</span> <span class="token return-type class-name"><span class="token keyword">bool</span></span> <span class="token function">Equals</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span> other<span class="token punctuation">)</span></span>
 <span class="highlight-line">    <span class="token punctuation">{</span></span>
-<span class="highlight-line">        <span class="token keyword">return</span> EqualityComparer<span class="token operator">&lt;</span>TIdentity<span class="token operator">></span><span class="token punctuation">.</span>Default<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>Id<span class="token punctuation">,</span> other<span class="token punctuation">.</span>Id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> EqualityComparer<span class="token operator">&lt;</span>TIdentity<span class="token operator">&gt;</span><span class="token punctuation">.</span>Default<span class="token punctuation">.</span><span class="token function">Equals</span><span class="token punctuation">(</span>Id<span class="token punctuation">,</span> other<span class="token punctuation">.</span>Id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
 <span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">override</span> <span class="token return-type class-name"><span class="token keyword">int</span></span> <span class="token function">GetHashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span>
 <span class="highlight-line">    <span class="token punctuation">{</span></span>
-<span class="highlight-line">        <span class="token keyword">return</span> EqualityComparer<span class="token operator">&lt;</span>TIdentity<span class="token operator">></span><span class="token punctuation">.</span>Default<span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span>Id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
+<span class="highlight-line">        <span class="token keyword">return</span> EqualityComparer<span class="token operator">&lt;</span>TIdentity<span class="token operator">&gt;</span><span class="token punctuation">.</span>Default<span class="token punctuation">.</span><span class="token function">GetHashCode</span><span class="token punctuation">(</span>Id<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span> left<span class="token punctuation">,</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span> right<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">==</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span> left<span class="token punctuation">,</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span> right<span class="token punctuation">)</span></span>
 <span class="highlight-line">    <span class="token punctuation">{</span></span>
 <span class="highlight-line">        <span class="token keyword">return</span> left<span class="token punctuation">?.</span><span class="token function">Equals</span><span class="token punctuation">(</span>right<span class="token punctuation">)</span> <span class="token operator">??</span> <span class="token function">Equals</span><span class="token punctuation">(</span>right<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
 <span class="highlight-line"></span>
-<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span> left<span class="token punctuation">,</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">></span></span> right<span class="token punctuation">)</span></span>
+<span class="highlight-line">    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">bool</span> <span class="token keyword">operator</span> <span class="token operator">!=</span><span class="token punctuation">(</span><span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span> left<span class="token punctuation">,</span> <span class="token class-name">Entity<span class="token punctuation">&lt;</span>TIdentity<span class="token punctuation">&gt;</span></span> right<span class="token punctuation">)</span></span>
 <span class="highlight-line">    <span class="token punctuation">{</span></span>
 <span class="highlight-line">        <span class="token keyword">return</span> <span class="token operator">!</span><span class="token punctuation">(</span>left <span class="token operator">==</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span></span>
 <span class="highlight-line">    <span class="token punctuation">}</span></span>
@@ -494,7 +490,7 @@
         <hr>
         <div class="flash-messages">
             <div class="flash">
-                <p>Join the discussion for this article on <a href="https://github.com/abbasamiri/abbasamiri.github.io/issues/3" target="_blank">this
+                <p>Join the discussion for this article on <a rel="noreferrer" href="https://github.com/abbasamiri/abbasamiri.github.io/issues/3" target="_blank">this
                         ticket</a>.
                 </p>
             </div>
@@ -555,7 +551,7 @@
     </div>
 </div>
 <footer class="Box-footer text-center">
-    &copy; <span id="currentYear"></span> Abbas Amiri
+    © <span id="currentYear"></span> Abbas Amiri
 </footer>
 <script>
     (function () {
