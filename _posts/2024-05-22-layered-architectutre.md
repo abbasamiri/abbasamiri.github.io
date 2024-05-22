@@ -21,6 +21,7 @@ Each layer provides a certain level of abstraction, hiding the complexity of the
 
 ### 4. **Reusability**
 Layers can be designed to be reusable across different systems. For instance, a data access layer can be reused in multiple applications that require similar data access logic. This reuse can significantly reduce development time and effort.
+
 ### 5. **Maintainability**
 By isolating changes within a single layer, the layered architecture makes the system easier to maintain. When a change is required, it is often confined to one layer, minimizing the impact on the rest of the system. This isolation helps in managing dependencies and reduces the complexity of maintaining the codebase.
 
