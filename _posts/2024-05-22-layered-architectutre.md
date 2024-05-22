@@ -2,7 +2,7 @@
 layout: post
 title:  "Layered Architecture"
 date:   2024-05-22
-comments_id : "7"
+comments_id : "8"
 description: "Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels."
 ---
 
