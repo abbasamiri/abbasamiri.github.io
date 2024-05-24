@@ -1,7 +1,9 @@
 ---
-layout: post
+tags: post
+layout: layouts/post.njk
 title:  "Layered Architecture"
-date:   2024-05-22
+permalink: "posts/happy-programmers-day-2021/"
+date:   2021-09-13
 comments_id : "7"
 description: "Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels."
 ---
