@@ -38,35 +38,7 @@ jobs:
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
-        if: github.ref == 'refs/heads/Switch-to-Eleventy'
+        # if: github.ref == 'refs/heads/Switch-to-Eleventy'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-
-#name: Eleventy Build
-#
-#on:
-#  push:
-#    branches:
-#      - Switch-to-Eleventy
-#
-#jobs:
-#  deploy:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v2
-#
-#      - name: Setup Node
-#        uses: actions/setup-node@v1
-#        with:
-#          node-version: '10.x'
-#
-#      - run: npm ci
-#
-#      - run: npm run build
-#
-#      - name: Deploy
-#        uses: peaceiris/actions-gh-pages@v3
-#        with:
-#          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-#          publish_dir: ./_site
