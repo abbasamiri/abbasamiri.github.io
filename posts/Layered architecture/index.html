@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels.">
+    <meta name="robots" content="index, archive">
+    <meta property="og:title" content="Enterprise Software Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="A place for discussing about software.">
+    <meta property="og:description" content="A place for discussing about software.">
+    <meta property="og:url" content="/">
+    <meta property="og:site_name" content="Enterprise Software Blog">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Enterprise Software Blog">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <title>Enterprise Software Blog  - Layered Architecture</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179743488-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-179743488-1');
+    </script>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-item">
+        <a href="/" class="Header-link f4 d-flex flex-items-center font-fugaz-one">
+            Enterprise Software Blog
+        </a>
+    </div>
+    <div class="Header-item Header-item--full">
+    </div>
+    <div class="Header-item mr-0">
+        <a href="/feed.xml" target="_blank">
+            <img src="/assets/images/rss-icon.png" alt="RSS">
+        </a>
+    </div>
+</header>
+<div class="container-xl clearfix">
+    <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
+        <div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri" style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">Abbas Amiri</h3>
+        <h3 class="text-center">Software Engineer</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a rel="noreferrer" href="https://github.com/abbasamiri" title="Github" target="_blank"><i class="icon-github-circled"></i></a>
+            <a rel="noreferrer" href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i class="icon-stackoverflow-1"></i></a>
+            <a rel="noreferrer" href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
+
+    </div>
+    <div class="col-12 col-xl-9 col-md-9 col-sm-12 col-lg-9 float-left">
+        <div class="Box m-2 color-shadow-medium text-justify">
+    <article class="Box-body">
+        <header>
+            <h2>Layered Architecture</h2>
+            <p class="color-gray-5"><i class="icon-calendar-outlilne"></i> Mon Sep 13 2021</p>
+        </header>
+        <hr>
+        <section class="markdown-body">
+            <p><img src="/assets/images/article-image-26.jpg" alt=""></p>
+<p>Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels. Maintainability, scalability, and separation of concerns are all improved as a result of the fact that each layer is assigned a distinct task and duty. Here’s a detailed description of the philosophy behind layered architecture:</p>
+<h3 id="1.-separation-of-concerns" tabindex="-1">1. <strong>Separation of Concerns</strong> <a class="direct-link" href="#1.-separation-of-concerns" aria-hidden="true">#</a></h3>
+<p>The core idea of layered architecture is to separate different aspects of the system into distinct layers. Each layer addresses specific concerns and has a clear responsibility. This separation makes the system easier to understand, develop, and maintain. By isolating changes to a single layer, it reduces the risk of unintended side effects in other parts of the system.</p>
+<h3 id="2.-modularity" tabindex="-1">2. <strong>Modularity</strong> <a class="direct-link" href="#2.-modularity" aria-hidden="true">#</a></h3>
+<p>Layered architecture promotes modularity by dividing the system into independent modules (layers). Each module can be developed, tested, and maintained independently. This modularity enables teams to work on different layers concurrently and simplifies debugging and testing.</p>
+<h3 id="3.-abstraction" tabindex="-1">3. <strong>Abstraction</strong> <a class="direct-link" href="#3.-abstraction" aria-hidden="true">#</a></h3>
+<p>Each layer provides a certain level of abstraction, hiding the complexity of the lower layers from the upper layers. This abstraction simplifies the interactions between layers, as each layer only needs to interact with the layer directly below it through well-defined interfaces.</p>
+<h3 id="4.-reusability" tabindex="-1">4. <strong>Reusability</strong> <a class="direct-link" href="#4.-reusability" aria-hidden="true">#</a></h3>
+<p>Layers can be designed to be reusable across different systems. For instance, a data access layer can be reused in multiple applications that require similar data access logic. This reuse can significantly reduce development time and effort.</p>
+<h3 id="5.-maintainability" tabindex="-1">5. <strong>Maintainability</strong> <a class="direct-link" href="#5.-maintainability" aria-hidden="true">#</a></h3>
+<p>By isolating changes within a single layer, the layered architecture makes the system easier to maintain. When a change is required, it is often confined to one layer, minimizing the impact on the rest of the system. This isolation helps in managing dependencies and reduces the complexity of maintaining the codebase.</p>
+<h3 id="6.-scalability" tabindex="-1">6. <strong>Scalability</strong> <a class="direct-link" href="#6.-scalability" aria-hidden="true">#</a></h3>
+<p>Layered architecture supports scalability by allowing each layer to be scaled independently. For example, if the application layer experiences high load, it can be scaled out separately without affecting the other layers.</p>
+<h3 id="7.-ease-of-testing" tabindex="-1">7. <strong>Ease of Testing</strong> <a class="direct-link" href="#7.-ease-of-testing" aria-hidden="true">#</a></h3>
+<p>Testing is simplified in a layered architecture because each layer can be tested in isolation. Unit tests can focus on the logic within a single layer, while integration tests can ensure that the interactions between layers work as expected.</p>
+<h3 id="typical-layers-in-layered-architecture" tabindex="-1">Typical Layers in Layered Architecture <a class="direct-link" href="#typical-layers-in-layered-architecture" aria-hidden="true">#</a></h3>
+<h4 id="1.-presentation-layer" tabindex="-1">1. <strong>Presentation Layer</strong> <a class="direct-link" href="#1.-presentation-layer" aria-hidden="true">#</a></h4>
+<p>This is the topmost layer, responsible for the user interface and user interaction. It handles input from the user and displays the output. Technologies used in this layer include HTML, CSS, JavaScript, and various front-end frameworks.</p>
+<h4 id="2.-application-layer" tabindex="-1">2. <strong>Application Layer</strong> <a class="direct-link" href="#2.-application-layer" aria-hidden="true">#</a></h4>
+<p>Also known as the service layer, it contains the business logic of the application. It processes data received from the presentation layer, makes decisions, and performs computations. This layer often uses business rules engines and workflow tools.</p>
+<h4 id="3.-domain-layer" tabindex="-1">3. <strong>Domain Layer</strong> <a class="direct-link" href="#3.-domain-layer" aria-hidden="true">#</a></h4>
+<p>Sometimes merged with the application layer, the domain layer represents the core business logic and domain entities. It encapsulates the rules and logic specific to the business domain.</p>
+<h4 id="4.-data-access-layer" tabindex="-1">4. <strong>Data Access Layer</strong> <a class="direct-link" href="#4.-data-access-layer" aria-hidden="true">#</a></h4>
+<p>This layer handles communication with data sources such as databases, file systems, or external services. It provides an abstraction over the data access logic, ensuring that other layers do not need to concern themselves with data retrieval and storage details.</p>
+<h4 id="5.-infrastructure-layer" tabindex="-1">5. <strong>Infrastructure Layer</strong> <a class="direct-link" href="#5.-infrastructure-layer" aria-hidden="true">#</a></h4>
+<p>Responsible for providing common services and utilities required by other layers, such as logging, networking, and configuration management. It often includes cross-cutting concerns that span multiple layers.</p>
+<h3 id="conclusion" tabindex="-1">Conclusion <a class="direct-link" href="#conclusion" aria-hidden="true">#</a></h3>
+<p>The philosophy of layered architecture revolves around organizing system functionality into distinct, manageable layers. This structure enhances maintainability, scalability, modularity, and ease of testing, ultimately leading to more robust and adaptable software systems. By adhering to the principles of separation of concerns and abstraction, layered architecture helps in building complex systems that are easier to understand, develop, and maintain.</p>
+
+        </section>
+    </article>
+</div>
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <h3><i class="icon-comment"></i> Comments</h3>
+        <hr>
+        <div class="flash-messages">
+            <div class="flash">
+                <p>Join the discussion for this article on <a rel="noreferrer" href="https://github.com/abbasamiri/abbasamiri.github.io/issues/7" target="_blank">this
+                        ticket</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ml-6 pl-3" id="comment-container"></div>
+    </div>
+</div>
+
+<script>
+    const GH_API_URL = 'https://api.github.com/repos/abbasamiri/abbasamiri.github.io/issues/7/comments';
+    let request = new XMLHttpRequest();
+    request.open('GET', GH_API_URL, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let response = JSON.parse(this.response);
+
+            for (let i = 0; i < response.length; i++) {
+                document.getElementById('comment-container').appendChild(createCommentEl(response[i]));
+            }
+        } else {
+            console.error(this);
+        }
+    };
+
+    function createCommentEl(response) {
+        let comment = document.createElement('div');
+        comment.classList.add('TimelineItem')
+        let date = new Date(response.created_at);
+        let commentText = '';
+        if (window.showdown) {
+            let converter = new showdown.Converter();
+            commentText = converter.makeHtml(response.body);
+        }
+        comment.innerHTML =
+            '<div class="TimelineItem-avatar">\n' +
+            '<img class="avatar" height="40" width="40" alt="@octocat"\n' +
+            'src="' + response.user.avatar_url + '" />\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-badge">\n' +
+            '<i class="icon-comment" style="margin-top: 6px;margin-left: 2px;"></i>\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-body">\n' +
+            '<div class="Box">\n' +
+            '<div class="Box-body">\n' +
+            '<a href="' + response.html_url + '" class="mr-1" target="_blank">' +
+            '<strong>' + response.user.login + '</strong> commented at ' + date.toLocaleString() +
+            '</a>\n' +
+            '<p>' + commentText + '</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n'
+        return comment;
+    }
+
+    request.send();
+</script>
+
+    </div>
+</div>
+<footer class="Box-footer text-center">
+    © <span id="currentYear"></span> Abbas Amiri
+</footer>
+<script>
+    (function () {
+        document.getElementById('currentYear').innerText = (new Date()).getFullYear();
+    })();
+</script>
+</body>
+</html>
