@@ -3,7 +3,7 @@ tags: post
 layout: layouts/post.njk
 title:  "Layered Architecture"
 permalink: "posts/Layered architecture/"
-date:   2021-09-13
+date:   2024-05-24
 comments_id : "7"
 description: "Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels."
 ---
