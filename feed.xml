@@ -4,7 +4,7 @@
 	<subtitle>A place for discussing about software.</subtitle>
 	<link href="" rel="self"/>
 	<link href="https://abbasamiri.github.io/"/>
-	<updated>2024-05-24T08:41:54Z</updated>
+	<updated>2024-06-11T08:54:04Z</updated>
 	<id>https://abbasamiri.github.io/</id>
 	<author>
 		<name>Abbas Amiri</name>
@@ -73,6 +73,14 @@
 			<updated>2024-05-24T00:00:00Z</updated>
 			<id>https://abbasamiri.github.io/posts/Layered%20architecture/</id>
 			<description>Layered architecture is a design philosophy and pattern that is utilized in the field of software engineering to divide the functionality of applications and systems into discrete levels.</description>
+		</entry>
+		
+		<entry>
+			<title>What is 5-tuple approach?</title>
+			<link href="https://abbasamiri.github.io/posts/what%20is%205-tuple%20approach/"/>
+			<updated>2024-06-11T00:00:00Z</updated>
+			<id>https://abbasamiri.github.io/posts/what%20is%205-tuple%20approach/</id>
+			<description>A 5-tuple approach is a method or strategy in various fields that utilizes five specific components, elements, or parameters. The concept of a 5-tuple is rooted in mathematics, where a tuple is an ordered list of elements. A 5-tuple specifically consists of five elements.</description>
 		</entry>
 </feed>
 
