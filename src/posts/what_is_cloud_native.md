@@ -12,7 +12,7 @@ description: "Cloud Native is a software approach that focuses on building, depl
 
 Cloud Native is a software approach that focuses on building, deploying, and managing modern applications in cloud computing environments. It allows companies to build highly scalable, flexible, and resilient applications that can be updated quickly to meet customer demands. This approach benefits businesses by increasing efficiency, reducing cost, and ensuring availability. Cloud-native applications consist of multiple small, interdependent services called microservices, which work independently and take minimal computing resources to run.
 
-Cloud-native applications are more agile than traditional enterprise applications, as they use a collaborative approach and are highly scalable on different platforms. The [https://www.cncf.io](Cloud Native Computing Foundation (CNCF)) is an open-source foundation that supports organizations in developing critical cloud-native components, including Kubernetes.
+Cloud-native applications are more agile than traditional enterprise applications, as they use a collaborative approach and are highly scalable on different platforms. The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io) is an open-source foundation that supports organizations in developing critical cloud-native components, including Kubernetes.
 
 The cloud-native architecture combines software components that development teams use to build and run scalable cloud-native applications. The CNCF lists immutable infrastructure, microservices, declarative APIs, containers, and service meshes as the technological blocks of cloud-native architecture.
 
