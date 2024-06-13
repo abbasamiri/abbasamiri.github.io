@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Cloud Native is a software approach that focuses on building, deploying, and managing modern applications in cloud computing environments.">
+    <meta name="robots" content="index, archive">
+    <meta property="og:title" content="Enterprise Software Blog">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="A place for discussing about software.">
+    <meta property="og:description" content="A place for discussing about software.">
+    <meta property="og:url" content="/">
+    <meta property="og:site_name" content="Enterprise Software Blog">
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Enterprise Software Blog">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/favicons/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="canonical" href="https://github.com/abbasamiri/abbasamiri.github.io">
+    <link rel="stylesheet" href="/assets/css/site.css">
+    <title>Enterprise Software Blog  - What is Cloud Native</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z14WXQD4FN"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-Z14WXQD4FN');
+    </script>
+</head>
+<body>
+<header class="Header">
+    <div class="Header-item">
+        <a href="/" class="Header-link f4 d-flex flex-items-center font-fugaz-one">
+            Enterprise Software Blog
+        </a>
+    </div>
+    <div class="Header-item Header-item--full">
+    </div>
+    <div class="Header-item mr-0">
+        <a href="/feed.xml" target="_blank">
+            <img src="/assets/images/rss-icon.png" alt="RSS">
+        </a>
+    </div>
+</header>
+<div class="container-xl clearfix">
+    <div class="col-12 col-xl-3 col-md-3 col-sm-12 col-lg-3 float-left">
+        <div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <img src="/assets/images/abbas-amiri.jpg" alt="Abbas Amiri" style="width: 150px; height: auto; display:block;margin:auto;">
+        <p></p>
+        <h3 class="text-center">Abbas Amiri</h3>
+        <h3 class="text-center">Software Engineer</h3>
+        <p></p>
+        <p class="text-center">
+            <a href="mailto://abbas.amiri@outlook.com" title="Email" target="_blank"><i class="icon-mail"></i></a>
+            <a rel="noreferrer" href="https://github.com/abbasamiri" title="Github" target="_blank"><i class="icon-github-circled"></i></a>
+            <a rel="noreferrer" href="https://stackoverflow.com/users/2234569/abbas-amiri" title="Stackoverflow" target="_blank"><i class="icon-stackoverflow-1"></i></a>
+            <a rel="noreferrer" href="https://twitter.com/AbbasAmirii" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>
+        </p>
+    </div>
+</div>
+
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body" id="quote" style="display: none">
+        <p id="quote-text"></p>
+        <p id="quote-author"></p>
+    </div>
+</div>
+
+<script>
+    var getJSON = function (url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.responseType = 'json';
+        xhr.onload = function () {
+            var status = xhr.status;
+            if (status === 200) {
+                callback(null, xhr.response);
+            } else {
+                callback(status, xhr.response);
+            }
+        };
+        xhr.send();
+    };
+    getJSON('/assets/data/quotes.json', function (err, data) {
+        if (err === null) {
+            var element = document.getElementById('quote');
+            element.style.display = 'block'
+            var random = Math.floor(Math.random() * (data.length - 1));
+            document.getElementById('quote-text').innerText = data[random].quote;
+            document.getElementById('quote-author').innerText = '-- ' + data[random].author;
+        }
+    });
+</script>
+
+    </div>
+    <div class="col-12 col-xl-9 col-md-9 col-sm-12 col-lg-9 float-left">
+        <div class="Box m-2 color-shadow-medium text-justify">
+    <article class="Box-body">
+        <header>
+            <h2>What is Cloud Native</h2>
+            <p class="color-gray-5"><i class="icon-calendar-outlilne"></i> Fri Jun 14 2024</p>
+        </header>
+        <hr>
+        <section class="markdown-body">
+            <p><img src="/assets/images/c-dustin-K-Iog-Bqf8E-unsplash.jpg" alt=""></p>
+<p>Cloud Native is a software approach that focuses on building, deploying, and managing modern applications in cloud computing environments. It allows companies to build highly scalable, flexible, and resilient applications that can be updated quickly to meet customer demands. This approach benefits businesses by increasing efficiency, reducing cost, and ensuring availability. Cloud-native applications consist of multiple small, interdependent services called microservices, which work independently and take minimal computing resources to run.</p>
+<p>Cloud-native applications are more agile than traditional enterprise applications, as they use a collaborative approach and are highly scalable on different platforms. The [<a rel="noreferrer" target="_blank" href="https://www.cncf.io">https://www.cncf.io</a>](Cloud Native Computing Foundation (CNCF)) is an open-source foundation that supports organizations in developing critical cloud-native components, including Kubernetes.</p>
+<p>The cloud-native architecture combines software components that development teams use to build and run scalable cloud-native applications. The CNCF lists immutable infrastructure, microservices, declarative APIs, containers, and service meshes as the technological blocks of cloud-native architecture.</p>
+<p>Immutable infrastructure ensures that servers for hosting cloud-native applications remain unchanged after deployment, while microservices are loosely coupled software components that communicate with each other. APIs bring loosely coupled microservices together, and service mesh manages communication between microservices. Containers are the smallest compute unit in a cloud-native application, allowing developers to deploy applications on premises, cloud infrastructure, or hybrid clouds.</p>
+<p>Cloud-native application development is a method used by developers to build and deploy applications that are designed to meet changing user expectations. It involves adopting specific software practices to reduce the delivery timeline and deliver accurate features. Common practices include continuous integration (CI), continuous delivery (CD), DevOps, and serverless computing.</p>
+<p>The benefits of cloud-native development include faster development, platform independence, cost-effective operations, and consistency in the operating environment. Developers can build ready-to-deploy containerized applications with DevOps practices, allowing them to respond quickly to changes without shutting down the app. The cloud-native stack consists of several layers, including the infrastructure layer, provisioning layer, runtime layer, orchestration and management layer, application definition and development layer, and observability and analysis tools.</p>
+<p>Cloud computing refers to software infrastructure hosted on an external data center and made available to users on a pay-per-use basis. Companies can use on-demand cloud-native services from a cloud provider, while cloud-enabled applications are legacy enterprise applications modified to run on the cloud. Cloud-native applications, on the other hand, are designed to reside in the cloud from the start, utilizing cloud technologies like microservices, container orchestrators, and auto scaling.</p>
+<p>In summary, cloud-native application development offers several benefits, including faster development, platform independence, cost-effective operations, and the ability to build and run applications with the cloud computing model.</p>
+
+        </section>
+    </article>
+</div>
+<div class="Box m-2 color-shadow-medium">
+    <div class="Box-body">
+        <h3><i class="icon-comment"></i> Comments</h3>
+        <hr>
+        <div class="flash-messages">
+            <div class="flash">
+                <p>Join the discussion for this article on <a rel="noreferrer" href="https://github.com/abbasamiri/abbasamiri.github.io/issues/10" target="_blank">this
+                        ticket</a>.
+                </p>
+            </div>
+        </div>
+        <div class="ml-6 pl-3" id="comment-container"></div>
+    </div>
+</div>
+
+<script>
+    const GH_API_URL = 'https://api.github.com/repos/abbasamiri/abbasamiri.github.io/issues/10/comments';
+    let request = new XMLHttpRequest();
+    request.open('GET', GH_API_URL, true);
+    request.onload = function () {
+        if (this.status >= 200 && this.status < 400) {
+            let response = JSON.parse(this.response);
+
+            for (let i = 0; i < response.length; i++) {
+                document.getElementById('comment-container').appendChild(createCommentEl(response[i]));
+            }
+        } else {
+            console.error(this);
+        }
+    };
+
+    function createCommentEl(response) {
+        let comment = document.createElement('div');
+        comment.classList.add('TimelineItem')
+        let date = new Date(response.created_at);
+        let commentText = '';
+        if (window.showdown) {
+            let converter = new showdown.Converter();
+            commentText = converter.makeHtml(response.body);
+        }
+        comment.innerHTML =
+            '<div class="TimelineItem-avatar">\n' +
+            '<img class="avatar" height="40" width="40" alt="@octocat"\n' +
+            'src="' + response.user.avatar_url + '" />\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-badge">\n' +
+            '<i class="icon-comment" style="margin-top: 6px;margin-left: 2px;"></i>\n' +
+            '</div>\n' +
+            '<div class="TimelineItem-body">\n' +
+            '<div class="Box">\n' +
+            '<div class="Box-body">\n' +
+            '<a href="' + response.html_url + '" class="mr-1" target="_blank">' +
+            '<strong>' + response.user.login + '</strong> commented at ' + date.toLocaleString() +
+            '</a>\n' +
+            '<p>' + commentText + '</p>\n' +
+            '</div>\n' +
+            '</div>\n' +
+            '</div>\n'
+        return comment;
+    }
+
+    request.send();
+</script>
+
+    </div>
+</div>
+<footer class="Box-footer text-center">
+    © <span id="currentYear"></span> Abbas Amiri
+</footer>
+<script>
+    (function () {
+        document.getElementById('currentYear').innerText = (new Date()).getFullYear();
+    })();
+</script>
+</body>
+</html>
