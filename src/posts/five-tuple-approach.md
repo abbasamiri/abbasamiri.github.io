@@ -2,7 +2,7 @@
 tags: post
 layout: layouts/post.njk
 title:  "What is 5-tuple approach?"
-permalink: "posts/what is 5-tuple approach/"
+permalink: "posts/what-is-5-tuple-approach/"
 date:   2024-06-11
 comments_id : "9"
 description: "A 5-tuple approach is a method or strategy in various fields that utilizes five specific components, elements, or parameters. The concept of a 5-tuple is rooted in mathematics, where a tuple is an ordered list of elements. A 5-tuple specifically consists of five elements."
