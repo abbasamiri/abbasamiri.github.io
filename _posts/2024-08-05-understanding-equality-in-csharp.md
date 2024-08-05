@@ -11,11 +11,11 @@ description: "Equality is a fundamental concept in programming, serving as the c
 #### Abstract
 This article delves into the concept of equality in C#, providing a comprehensive examination of how equality is implemented, used, and maintained within C# programs. It begins with a discussion on the fundamental concepts of equality, distinguishing between reference equality and value equality. The article then explores the default `Object.Equals` method, the motivations and guidelines for overriding `Equals`, and the critical role of the `GetHashCode` method in maintaining consistent behavior in hash-based collections.
 
-We further discuss the implementation of the `IEquatable<T>` interface, highlighting its advantages over the base `Object.Equals` method, followed by a detailed look at overloading the `==` and `!=` operators to provide a more intuitive means of comparing objects. The paper also differentiates equality handling between value types and reference types, emphasizing the importance of proper implementation in both scenarios.
+We further discuss the implementation of the `IEquatable<T>` interface, highlighting its advantages over the base `Object.Equals` method, followed by a detailed look at overloading the `==` and `!=` operators to provide a more intuitive means of comparing objects. The article also differentiates equality handling between value types and reference types, emphasizing the importance of proper implementation in both scenarios.
 
 The introduction of record types in C# 9.0, which offers built-in support for value-based equality, is also covered, showcasing how records simplify equality concerns compared to traditional class-based implementations.
 
-Best practices for implementing equality are summarized, including recommendations on immutability, testing, and common pitfalls to avoid. The paper concludes with a reflection on the significance of equality in C# programming, providing final thoughts and identifying potential areas for future research or development.
+Best practices for implementing equality are summarized, including recommendations on immutability, testing, and common pitfalls to avoid. The article concludes with a reflection on the significance of equality in C# programming, providing final thoughts and identifying potential areas for future research or development.
 
 By the end of this article, readers will have a clear understanding of how to effectively implement and utilize equality in C# to ensure robust and reliable software design.
 
@@ -24,15 +24,15 @@ Equality is a fundamental concept in programming, serving as the cornerstone for
 
 In C#, equality can be interpreted in different ways: reference equality, where two object references point to the same memory location, and value equality, where two objects are considered equal based on their data content. Navigating these distinctions is vital for developers to avoid bugs and ensure the correctness of their programs.
 
-This paper aims to provide a comprehensive overview of equality in C#. We begin by discussing the fundamental concepts of equality, exploring how C# handles equality out of the box with the default `Object.Equals` method. We then delve into the necessity and methodology of overriding the `Equals` method to customize equality comparisons for user-defined classes.
+This article aims to provide a comprehensive overview of equality in C#. We begin by discussing the fundamental concepts of equality, exploring how C# handles equality out of the box with the default `Object.Equals` method. We then delve into the necessity and methodology of overriding the `Equals` method to customize equality comparisons for user-defined classes.
 
 We will explore the significance of the `GetHashCode` method, which complements `Equals` and plays a critical role in the behavior of hash-based collections. Implementing the `IEquatable<T>` interface is examined for its type-specific efficiency benefits. Additionally, we discuss overloading the `==` and `!=` operators to provide more intuitive equality operations.
 
-The paper also covers equality in value types versus reference types, highlighting the different considerations and best practices for each. With the advent of C# 9.0, record types have introduced a streamlined approach to value-based equality, which we will explore in detail.
+The article also covers equality in value types versus reference types, highlighting the different considerations and best practices for each. With the advent of C# 9.0, record types have introduced a streamlined approach to value-based equality, which we will explore in detail.
 
-Finally, we compile a set of best practices for implementing equality, drawing on common challenges and pitfalls observed in real-world scenarios. By providing a thorough understanding of equality in C#, this paper aims to equip developers with the knowledge necessary to implement robust equality logic in their applications.
+Finally, we compile a set of best practices for implementing equality, drawing on common challenges and pitfalls observed in real-world scenarios. By providing a thorough understanding of equality in C#, this article aims to equip developers with the knowledge necessary to implement robust equality logic in their applications.
 
-In conclusion, mastering equality in C# is essential for ensuring the accuracy and efficiency of software systems. Through this paper, we aim to demystify the complexities of equality and provide clear, actionable guidance for developers at all levels.
+In conclusion, mastering equality in C# is essential for ensuring the accuracy and efficiency of software systems. Through this article, we aim to demystify the complexities of equality and provide clear, actionable guidance for developers at all levels.
 
 #### Fundamental Concepts of Equality
 In C#, equality can be broadly categorized into two types: reference equality and value equality. Understanding these concepts is essential for correctly implementing and using equality in your programs.
