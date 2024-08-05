@@ -412,5 +412,5 @@ Implementing equality in C# is a critical aspect of developing robust and reliab
 #### References
 - Microsoft Docs: [Object.Equals Method](https://docs.microsoft.com/en-us/dotnet/api/system.object.equals)
 - Microsoft Docs: [GetHashCode Method](https://docs.microsoft.com/en-us/dotnet/api/system.object.gethashcode)
-- Microsoft Docs: [IEquatable<T> Interface](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)
+- Microsoft Docs: [IEquatable\<T\> Interface](https://docs.microsoft.com/en-us/dotnet/api/system.iequatable-1)
 - Microsoft Docs: [Records in C#](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record)
