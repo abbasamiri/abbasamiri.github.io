@@ -2,7 +2,7 @@
 layout: post
 title:  "Understanding Equality in C#"
 date:   2024-08-05
-comments_id : "9"
+comments_id : "11"
 description: "Equality is a fundamental concept in programming, serving as the cornerstone for comparing objects and values. In C#, understanding and correctly implementing equality is crucial for writing reliable and maintainable code. Whether dealing with primitive data types or complex objects, equality operations enable developers to determine whether two instances are considered equivalent, impacting everything from basic conditionals to sophisticated data structures like dictionaries and sets."
 ---
 
